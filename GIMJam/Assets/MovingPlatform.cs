@@ -35,7 +35,7 @@ public class MovingPlatform : MonoBehaviour
 
         Vector2 nextPos = Vector2.MoveTowards(_rb.position, _targetPos, speed * Time.fixedDeltaTime);
         
-        //  calculates velocity so the player can "read" it
+        // This line is key: it calculates velocity so the player can "read" it
         _rb.velocity = (nextPos - _rb.position) / Time.fixedDeltaTime;
         
         _rb.MovePosition(nextPos);
