@@ -16,23 +16,24 @@ namespace TarodevController1
     {
         [SerializeField] private ScriptableStats1 _stats;
 
-        // idk what this is
+        // idk what this is
         private Rigidbody2D _rb;
         private CapsuleCollider2D _col;
         private FrameInput _frameInput;
         private Vector2 _frameVelocity;
         private bool _cachedQueryStartInColliders;
 
-        //Special layers
-        private bool _isStickyWall;
-        private bool _isStickyGround;
-        private bool _isJumpBoostGround;
+        //Special layers
+        private bool _isStickyWall;
+        private bool _isStickyGround;
+        private bool _isJumpBoostGround;
+        private Rigidbody2D _activePlatformRb;
 
-        // Double jump
+        // Double jump
         private int _maxJumps = 1;
         private int _jumpsRemaining;
 
-        // dashing
+        // dashing
         private int _dashesRemaining;
         private bool _isDashing;
         private float _dashTime;
@@ -40,20 +41,20 @@ namespace TarodevController1
         private Vector2 _lastDashDirection;
         private float _dashCooldownTimer;
 
-        //wall thingy
+        //wall thingy
         private bool _onWall;
         private int _wallDir; // 1 for wall on right, -1 for wall on left
 
         #region Interface
 
-        // idk this either
+        // idk this either
         public Vector2 FrameInput => _frameInput.Move;
         public event Action<bool, float> GroundedChanged;
         public event Action Jumped;
 
         #endregion
 
-        // dash camera shake
+        // dash camera shake
         private CinemachineImpulseSource _impulseSource;
 
         private int _facingDirection = 1; // 1 = right, -1 = left
@@ -143,50 +144,59 @@ namespace TarodevController1
         private bool _grounded;
 
         private void CheckCollisions()
-        {
-            Physics2D.queriesStartInColliders = false;
+        {
+            Physics2D.queriesStartInColliders = false;
 
-            // Ground Detection
-            RaycastHit2D groundHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer);
-            _isJumpBoostGround = groundHit.collider != null && groundHit.collider.gameObject.layer == LayerMask.NameToLayer("JumpBoost");
+            // Ground Detection
+            RaycastHit2D groundHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer);
 
-            // Wall Detection 
-            RaycastHit2D leftWallHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.left, _stats.WallDetectorDistance, ~_stats.PlayerLayer);
-            RaycastHit2D rightWallHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.right, _stats.WallDetectorDistance, ~_stats.PlayerLayer);
+            bool isMovingPlatform = groundHit.collider != null && groundHit.collider.gameObject.layer == LayerMask.NameToLayer("MovingPlatform");
 
-            bool leftWall = leftWallHit.collider != null;
-            bool rightWall = rightWallHit.collider != null;
+            if (isMovingPlatform) {
+                _activePlatformRb = groundHit.collider.GetComponent<Rigidbody2D>();
+            } else {
+                _activePlatformRb = null;
+            }
 
-            // Check "Sticky" layer
-            _isStickyWall = (leftWall && leftWallHit.collider.gameObject.layer == LayerMask.NameToLayer("Sticky")) ||
-                            (rightWall && rightWallHit.collider.gameObject.layer == LayerMask.NameToLayer("Sticky"));
+            _isJumpBoostGround = groundHit.collider != null && groundHit.collider.gameObject.layer == LayerMask.NameToLayer("JumpBoost");
 
-            _isStickyGround = groundHit.collider != null && groundHit.collider.gameObject.layer == LayerMask.NameToLayer("Sticky");
+            // Wall Detection 
+            RaycastHit2D leftWallHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.left, _stats.WallDetectorDistance, ~_stats.PlayerLayer);
+            RaycastHit2D rightWallHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.right, _stats.WallDetectorDistance, ~_stats.PlayerLayer);
 
-            //  Sticky wall
-            _onWall = _isStickyWall && (leftWall || rightWall) && !_grounded && _rb.velocity.y < 0.1f;
-            _wallDir = rightWall ? 1 : -1;
+            bool leftWall = leftWallHit.collider != null;
+            bool rightWall = rightWallHit.collider != null;
 
-            // Ground Logic
-            if (!_grounded && groundHit)
-            {
-                _grounded = true;
-                _jumpsRemaining = _maxJumps;
-                _dashesRemaining = _stats.MaxDashes;
-                _coyoteUsable = true;
-                _bufferedJumpUsable = true;
-                _endedJumpEarly = false;
-                GroundedChanged?.Invoke(true, Mathf.Abs(_frameVelocity.y));
-            }
-            else if (_grounded && !groundHit)
-            {
-                _grounded = false;
-                _frameLeftGrounded = _time;
-                GroundedChanged?.Invoke(false, 0);
-            }
+            // Check "Sticky" layer
+            _isStickyWall = (leftWall && leftWallHit.collider.gameObject.layer == LayerMask.NameToLayer("Sticky")) ||
+                            (rightWall && rightWallHit.collider.gameObject.layer == LayerMask.NameToLayer("Sticky"));
 
-            Physics2D.queriesStartInColliders = _cachedQueryStartInColliders;
-        }
+            _isStickyGround = groundHit.collider != null && groundHit.collider.gameObject.layer == LayerMask.NameToLayer("Sticky");
+
+            //  Sticky wall
+            _onWall = _isStickyWall && (leftWall || rightWall) && !_grounded && _rb.velocity.y < 0.1f;
+            _wallDir = rightWall ? 1 : -1;
+
+            // Ground Logic
+            if (!_grounded && groundHit)
+            {
+                _grounded = true;
+                _jumpsRemaining = _maxJumps;
+                _dashesRemaining = _stats.MaxDashes;
+                _coyoteUsable = true;
+                _bufferedJumpUsable = true;
+                _endedJumpEarly = false;
+                GroundedChanged?.Invoke(true, Mathf.Abs(_frameVelocity.y));
+            }
+            else if (_grounded && !groundHit)
+            {
+                _grounded = false;
+                _frameLeftGrounded = _time;
+                GroundedChanged?.Invoke(false, 0);
+            }
+
+            Physics2D.queriesStartInColliders = _cachedQueryStartInColliders;
+        }
 
         #endregion
 
@@ -204,14 +214,14 @@ namespace TarodevController1
 
         private void HandleJump()
         {
-            if (_grounded && _isJumpBoostGround)
-            {
-                _frameVelocity.y = _stats.JumpPower * 2.5f; // 2.5x height, adjust as needed
-                _jumpToConsume = false;
-                _grounded = false; // Force leave ground
-                Jumped?.Invoke();
-                return;
-            }
+            if (_grounded && _isJumpBoostGround)
+            {
+                _frameVelocity.y = _stats.JumpPower * 2.5f; // 2.5x height, adjust as needed
+                _jumpToConsume = false;
+                _grounded = false; // Force leave ground
+                Jumped?.Invoke();
+                return;
+            }
 
             if (!_endedJumpEarly && !_grounded && !_frameInput.JumpHeld && _rb.velocity.y > 0) _endedJumpEarly = true;
 
@@ -225,7 +235,7 @@ namespace TarodevController1
 
                 if (pushingAgainstWall)
                 {
-                    //  WALL CLIMB JUMP 
+                    //  WALL CLIMB JUMP 
                     _frameVelocity.y = _stats.WallClimbVerticalForce; // Strong upward boost
                     _frameVelocity.x = -_wallDir * _stats.WallClimbHorizontalForce; // Tiny push away
                 }
@@ -258,50 +268,50 @@ namespace TarodevController1
         }
 
         private void ExecuteJump()
-        {
-            _endedJumpEarly = false;
-            _timeJumpWasPressed = 0;
-            _bufferedJumpUsable = false;
-            _coyoteUsable = false;
+        {
+            _endedJumpEarly = false;
+            _timeJumpWasPressed = 0;
+            _bufferedJumpUsable = false;
+            _coyoteUsable = false;
 
-            float currentJumpPower = _isStickyGround ? _stats.JumpPower * 0.5f : _stats.JumpPower;
-            
-            _frameVelocity.y = currentJumpPower;
-            Jumped?.Invoke();
-        }
+            float currentJumpPower = _isStickyGround ? _stats.JumpPower * 0.5f : _stats.JumpPower;
+            
+            _frameVelocity.y = currentJumpPower;
+            Jumped?.Invoke();
+        }
 
         #endregion
 
         #region Horizontal
 
         private void HandleDirection()
-        {
-            if (_frameInput.Move.x != 0)
-            {
-                _facingDirection = (int)Mathf.Sign(_frameInput.Move.x);
-            }
+        {
+            if (_frameInput.Move.x != 0)
+            {
+                _facingDirection = (int)Mathf.Sign(_frameInput.Move.x);
+            }
 
-            // Determine target speed and acceleration
-            float targetSpeed = _frameInput.Move.x * _stats.MaxSpeed;
-            float currentAccel = _stats.Acceleration;
+            // Determine target speed and acceleration
+            float targetSpeed = _frameInput.Move.x * _stats.MaxSpeed;
+            float currentAccel = _stats.Acceleration;
 
-            // SLOW DOWN if on a sticky wall
-            if (_isStickyGround || _onWall)
-            {
-                targetSpeed *= 0.4f; // 40% of normal speed
-            }
+            // SLOW DOWN if on a sticky wall
+            if (_isStickyGround || _onWall)
+            {
+                targetSpeed *= 0.4f; // 40% of normal speed
+            }
 
-            if (_frameInput.Move.x == 0)
-            {
-                // When you stop moving on sticky ground, you stop almost instantly
-                float deceleration = _isStickyGround ? _stats.GroundDeceleration * 2 : (_grounded ? _stats.GroundDeceleration : _stats.AirDeceleration);
-                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, 0, deceleration * Time.fixedDeltaTime);
-            }
-            else
-            {
-                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, targetSpeed, _stats.Acceleration * Time.fixedDeltaTime);
-            }
-        }
+            if (_frameInput.Move.x == 0)
+            {
+                // When you stop moving on sticky ground, you stop almost instantly
+                float deceleration = _isStickyGround ? _stats.GroundDeceleration * 2 : (_grounded ? _stats.GroundDeceleration : _stats.AirDeceleration);
+                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, 0, deceleration * Time.fixedDeltaTime);
+            }
+            else
+            {
+                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, targetSpeed, _stats.Acceleration * Time.fixedDeltaTime);
+            }
+        }
 
         #endregion
 
@@ -390,7 +400,18 @@ namespace TarodevController1
 
         #endregion
 
-        private void ApplyMovement() => _rb.velocity = _frameVelocity;
+        private void ApplyMovement()
+        {
+            if (_activePlatformRb != null)
+            {
+                // Add the platform's velocity to the player's calculated frame velocity
+                _rb.velocity = _frameVelocity + _activePlatformRb.velocity;
+            }
+            else
+            {
+                _rb.velocity = _frameVelocity;
+            }
+        }
 
 #if UNITY_EDITOR
         private void OnValidate()

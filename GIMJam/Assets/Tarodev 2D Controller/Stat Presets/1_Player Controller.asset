@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5704932077599be41b33a25df84150fc, type: 3}
+  m_Name: 1_Player Controller
+  m_EditorClassIdentifier: 
+  PlayerLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  SnapInput: 1
+  VerticalDeadZoneThreshold: 0.3
+  HorizontalDeadZoneThreshold: 0.1
+  MaxSpeed: 12
+  Acceleration: 120
+  GroundDeceleration: 60
+  AirDeceleration: 15
+  GroundingForce: -1.5
+  GrounderDistance: 0.05
+  JumpPower: 20
+  MaxFallSpeed: 40
+  FallAcceleration: 85
+  JumpEndEarlyGravityModifier: 3
+  CoyoteTime: 0.15
+  JumpBuffer: 0.2
+  ApexThreshold: 5
+  ApexGravityModifier: 0.5
+  DashKey: 304
+  DashSpeed: 30
+  DashDuration: 0.15
+  MaxDashes: 1
+  PostDashVerticalLockTime: 0.1
+  DashCooldown: 0.5
+  DashDiagonalMultiplier: 1.5
+  WallSlideSpeed: 5
+  WallJumpForce: {x: 15, y: 35}
+  WallDetectorDistance: 0.1
+  WallClimbVerticalForce: 32
+  WallClimbHorizontalForce: 4
