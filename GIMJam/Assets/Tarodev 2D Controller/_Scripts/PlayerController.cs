@@ -27,6 +27,7 @@ namespace TarodevController
         private bool _isStickyWall;
         private bool _isStickyGround;
         private bool _isJumpBoostGround;
+        private Rigidbody2D _activePlatformRb;
 
         // Double jump
         private int _maxJumps = 1;
@@ -148,6 +149,15 @@ namespace TarodevController
 
             // Ground Detection
             RaycastHit2D groundHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer);
+
+            bool isMovingPlatform = groundHit.collider != null && groundHit.collider.gameObject.layer == LayerMask.NameToLayer("MovingPlatform");
+
+            if (isMovingPlatform) {
+                _activePlatformRb = groundHit.collider.GetComponent<Rigidbody2D>();
+            } else {
+                _activePlatformRb = null;
+            }
+
             _isJumpBoostGround = groundHit.collider != null && groundHit.collider.gameObject.layer == LayerMask.NameToLayer("JumpBoost");
 
             // Wall Detection 
@@ -390,7 +400,18 @@ namespace TarodevController
 
         #endregion
 
-        private void ApplyMovement() => _rb.velocity = _frameVelocity;
+        private void ApplyMovement()
+        {
+            if (_activePlatformRb != null)
+            {
+                // Add the platform's velocity to the player's calculated frame velocity
+                _rb.velocity = _frameVelocity + _activePlatformRb.velocity;
+            }
+            else
+            {
+                _rb.velocity = _frameVelocity;
+            }
+        }
 
 #if UNITY_EDITOR
         private void OnValidate()
