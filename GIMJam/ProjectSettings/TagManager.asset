@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MovingPlatform
   - Control
+  - Enemy
   layers:
   - Default
   - TransparentFX
