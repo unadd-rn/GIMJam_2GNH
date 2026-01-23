@@ -68,14 +68,22 @@ namespace TarodevController
 
         private void HandleSpriteFlip()
         {
-            if (_player.FrameInput.x != 0) _sprite.flipX = _player.FrameInput.x < 0;
+            if (_player.FrameInput.x != 0) _sprite.flipX = _player.FrameInput.x > 0;
         }
 
         private void HandleIdleSpeed()
         {
             var inputStrength = Mathf.Abs(_player.FrameInput.x);
+            
+            _anim.SetBool(IsWalkingKey, inputStrength > 0.1f); 
+
             _anim.SetFloat(IdleSpeedKey, Mathf.Lerp(1, _maxIdleSpeed, inputStrength));
-            _moveParticles.transform.localScale = Vector3.MoveTowards(_moveParticles.transform.localScale, Vector3.one * inputStrength, 2 * Time.deltaTime);
+            
+            _moveParticles.transform.localScale = Vector3.MoveTowards(
+                _moveParticles.transform.localScale, 
+                Vector3.one * inputStrength, 
+                2 * Time.deltaTime
+            );
         }
 
         private void HandleCharacterTilt()
@@ -139,5 +147,6 @@ namespace TarodevController
         private static readonly int GroundedKey = Animator.StringToHash("Grounded");
         private static readonly int IdleSpeedKey = Animator.StringToHash("IdleSpeed");
         private static readonly int JumpKey = Animator.StringToHash("Jump");
+        private static readonly int IsWalkingKey = Animator.StringToHash("IsWalking");
     }
 }
