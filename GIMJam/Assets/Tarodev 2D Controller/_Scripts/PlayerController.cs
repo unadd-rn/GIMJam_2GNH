@@ -196,6 +196,7 @@ namespace TarodevController
             }
 
             Physics2D.queriesStartInColliders = _cachedQueryStartInColliders;
+             Debug.DrawRay(_col.bounds.center, Vector2.down * (_col.size.y / 2 + _stats.GrounderDistance), groundHit ? Color.green : Color.red);
         }
 
         #endregion
