@@ -50,7 +50,7 @@ public class ControlPlate : MonoBehaviour
                 robot.ExternalJumpHeld = active;
                 break;
             case PlateType.Attack:
-                if(active) robot.ExternalAttackDown = true;
+                //insert attack stuff idk
                 break;
         }
     }
