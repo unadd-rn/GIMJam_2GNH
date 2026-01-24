@@ -26,9 +26,7 @@ public class LevelManager : MonoBehaviour
         totalCoinsInLevel = GameObject.FindGameObjectsWithTag("Coin").Length;
         
         if (vcam != null)
-        {
             transposer = vcam.GetCinemachineComponent<CinemachineTransposer>();
-        }
         
         UpdateUI();
     }
@@ -47,31 +45,22 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator LevelCompleteSequence()
     {
+        FreezeObjectsByTag("Player");
+        FreezeObjectsByTag("Enemy");
         Time.timeScale = 0.5f; 
-        
         float startSize = vcam.m_Lens.OrthographicSize;
-        
-        Vector3 startOffset = Vector3.zero;
-        if (transposer != null)
-        {
-            startOffset = transposer.m_FollowOffset;
-        }
-
+        Vector3 startOffset = transposer != null ? transposer.m_FollowOffset : Vector3.zero;
         Vector3 targetOffset = new Vector3(0, 0, startOffset.z);
 
         float elapsed = 0f;
-
         while (elapsed < zoomDuration)
         {
             elapsed += Time.unscaledDeltaTime;
             float t = elapsed / zoomDuration;
 
             vcam.m_Lens.OrthographicSize = Mathf.Lerp(startSize, targetOrthoSize, t);
-            
             if (transposer != null)
-            {
                 transposer.m_FollowOffset = Vector3.Lerp(startOffset, targetOffset, t);
-            }
 
             yield return null;
         }
@@ -81,12 +70,28 @@ public class LevelManager : MonoBehaviour
 
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
-        {
             SceneManager.LoadScene(nextSceneIndex);
-        }
         else
-        {
             SceneManager.LoadScene(0);
+    }
+
+    void FreezeObjectsByTag(string tag)
+    {
+        GameObject[] objects = GameObject.FindGameObjectsWithTag(tag);
+        foreach (GameObject obj in objects)
+        {
+            Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.velocity = Vector2.zero;
+                rb.isKinematic = true;
+            }
+
+            MonoBehaviour[] scripts = obj.GetComponents<MonoBehaviour>();
+            foreach (MonoBehaviour script in scripts)
+            {
+                if (script != null) script.enabled = false;
+            }
         }
     }
 }
