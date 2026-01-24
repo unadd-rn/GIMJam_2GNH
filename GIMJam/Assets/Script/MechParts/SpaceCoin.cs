@@ -3,9 +3,28 @@ using System.Collections;
 
 public class SpaceCoin : MonoBehaviour
 {
+    [Header("Hover Settings")]
+    public float floatAmplitude = 0.2f; //bob height
+    public float floatFrequency = 1.5f; //bob speed
+    
     private bool isCollected = false;
+    private Vector3 startPos;
 
-    private void OnTriggerEnter2D(Collider2D other) // Use OnTriggerEnter for 3D
+    void Start()
+    {
+        startPos = transform.position;
+    }
+
+    void Update()
+    {
+        if (!isCollected)
+        {
+            float newY = Mathf.Sin(Time.time * floatFrequency) * floatAmplitude;
+            transform.position = startPos + new Vector3(0, newY, 0);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !isCollected)
         {
@@ -18,10 +37,12 @@ public class SpaceCoin : MonoBehaviour
     {
         LevelManager.instance.AddCoin();
 
-        Vector3 startScale = transform.localScale;
-        Vector3 giantScale = startScale * 1.5f; // Pop size
-        float duration = 0.5f; // Total animation time
+        Vector3 currentScale = transform.localScale;
+        Vector3 giantScale = currentScale * 1.5f; 
+        float duration = 0.5f; 
         float elapsed = 0f;
+
+        Vector3 collectionPos = transform.position;
 
         while (elapsed < duration)
         {
@@ -29,7 +50,7 @@ public class SpaceCoin : MonoBehaviour
             float t = elapsed / duration;
 
             float scaleStep = Mathf.Sin(t * Mathf.PI); 
-            transform.localScale = Vector3.Lerp(startScale, giantScale, scaleStep);
+            transform.localScale = Vector3.Lerp(currentScale, giantScale, scaleStep);
             
             if (t > 0.5f) 
                 transform.localScale = Vector3.Lerp(giantScale, Vector3.zero, (t - 0.5f) * 2);
