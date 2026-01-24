@@ -7,9 +7,12 @@ public class EnemyShooting : MonoBehaviour
     public GameObject bullet;
     public Transform bulletPos;
     public float shootEvery;
-
     private float timer;
 
+    void Start()
+    {
+        GetComponent<Animator>().Play("idle");
+    }
     void Update()
     {
         timer += Time.deltaTime;
