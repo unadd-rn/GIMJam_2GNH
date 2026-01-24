@@ -3393,6 +3393,7 @@ MonoBehaviour:
   vcam: {fileID: 987007298}
   targetOrthoSize: 1
   zoomDuration: 1.2
+  finalCameraOffset: {x: 0, y: 0.1}
 --- !u!4 &978482636
 Transform:
   m_ObjectHideFlags: 0
@@ -3694,7 +3695,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6798933495347036385, guid: df8eb9168b5a5784e9b5f7fa4b620a6d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22.01
+      value: 22.05
       objectReference: {fileID: 0}
     - target: {fileID: 6798933495347036385, guid: df8eb9168b5a5784e9b5f7fa4b620a6d, type: 3}
       propertyPath: m_LocalPosition.y
