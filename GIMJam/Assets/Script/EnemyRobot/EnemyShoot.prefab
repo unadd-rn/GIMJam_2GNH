@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 233474955141544391}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.64, y: -0.02, z: 0}
+  m_LocalPosition: {x: -0.34, y: -0.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 4233817498336854199}
   - component: {fileID: 6484672268920875791}
   - component: {fileID: 8645033882054509811}
+  - component: {fileID: 5674415197707300297}
   m_Layer: 0
   m_Name: EnemyShoot
   m_TagString: Untagged
@@ -59,7 +60,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.55, y: 1.08, z: 0}
-  m_LocalScale: {x: 1, y: 1.7914, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2902968728659199883}
@@ -106,8 +107,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 1}
+  m_Sprite: {fileID: -419618885, guid: 26feae0eae7872b4ba8cdd7ee8384f04, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -132,3 +133,24 @@ MonoBehaviour:
   bullet: {fileID: 126167401268997267, guid: ee613bb2b502ee54393ee502085ef59c, type: 3}
   bulletPos: {fileID: 2902968728659199883}
   shootEvery: 4
+--- !u!95 &5674415197707300297
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5641589558113106897}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5151dc6e253d9704a9b3f4fe9eda28da, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
