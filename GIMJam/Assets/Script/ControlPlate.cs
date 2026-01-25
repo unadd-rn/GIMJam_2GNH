@@ -5,18 +5,31 @@ public class ControlPlate : MonoBehaviour
 {
     public enum PlateType { Left, Right, Jump, Attack }
     
+    [Header("References")]
+    public RobotController.RobotController robot;
+    public SpriteRenderer spriteRenderer;
+
     [Header("Settings")]
     public PlateType type;
-    public RobotController.RobotController robot;
-    
+    public Sprite activeSprite;
+    public Sprite inactiveSprite; 
+
     private int _overlapCount = 0;
+
+    private void Start()
+    {
+        if (spriteRenderer != null && inactiveSprite != null)
+        {
+            spriteRenderer.sprite = inactiveSprite;
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Control"))
         {
             _overlapCount++;
-            UpdateRobotStatus(true);
+            UpdatePlateState(true);
         }
     }
 
@@ -28,26 +41,31 @@ public class ControlPlate : MonoBehaviour
             if (_overlapCount <= 0)
             {
                 _overlapCount = 0;
-                UpdateRobotStatus(false);
+                UpdatePlateState(false);
             }
         }
     }
 
-    private void UpdateRobotStatus(bool active)
+    private void UpdatePlateState(bool isActive)
     {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.sprite = isActive ? activeSprite : inactiveSprite;
+        }
+
         if (robot == null) return;
 
         switch (type)
         {
             case PlateType.Left:
-                robot.ExternalMoveX = active ? -1f : 0f;
+                robot.ExternalMoveX = isActive ? -1f : 0f;
                 break;
             case PlateType.Right:
-                robot.ExternalMoveX = active ? 1f : 0f;
+                robot.ExternalMoveX = isActive ? 1f : 0f;
                 break;
             case PlateType.Jump:
-                robot.ExternalJumpDown = active;
-                robot.ExternalJumpHeld = active;
+                robot.ExternalJumpDown = isActive;
+                robot.ExternalJumpHeld = isActive;
                 break;
             case PlateType.Attack:
                 //insert attack stuff idk
