@@ -96,20 +96,22 @@ namespace RobotController
 
         private IEnumerator JumpChargeRoutine()
         {
-            // 1. Lock movement
             _player.IsInputLocked = true;
+            
+            // CLEANUP: Force the animator to forget it was ever on the ground
+            _anim.ResetTrigger(GroundedKey); 
             _anim.SetTrigger(ChargeKey); 
 
-            yield return new WaitForSeconds(0.2f); 
+            yield return new WaitForSeconds(0.1f); 
 
-            // 2. Unlock movement and Blast off!
             _player.IsInputLocked = false;
             _player.ApplyJumpForce(); 
             
+            // START JUMP: Clear the charge so it doesn't loop back to it
+            _anim.ResetTrigger(ChargeKey);
             _anim.SetTrigger(JumpKey);
+            
             _launchParticles.Play(); 
-            SetColor(_jumpParticles);
-            _jumpParticles.Play();
         }
 
         private void OnGroundedChanged(bool grounded, float impact)

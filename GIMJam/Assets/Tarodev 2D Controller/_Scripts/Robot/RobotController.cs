@@ -249,19 +249,6 @@ namespace RobotController
             if(_impulse != null) _impulse.GenerateImpulse();
         }
 
-        private void ExecuteJump()
-        {
-            _endedJumpEarly = false;
-            _timeJumpWasPressed = 0;
-            _bufferedJumpUsable = false;
-            _coyoteUsable = false;
-
-            float currentJumpPower = _isStickyGround ? _stats.JumpPower * 0.5f : _stats.JumpPower;
-            
-            _frameVelocity.y = currentJumpPower;
-            Jumped?.Invoke();
-        }
-
         #endregion
 
         #region Horizontal
