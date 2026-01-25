@@ -7,7 +7,7 @@ public class UFOController : MonoBehaviour
     [Header("Movement Settings (Seconds)")]
     [SerializeField] private Transform pointA;
     [SerializeField] private Transform pointB;
-    [SerializeField] private float secondsToTravel = 240f; // Exactly how long one way takes
+    [SerializeField] private float secondsToTravel = 30f;
 
     [Header("Abduction Settings")]
     [SerializeField] private float liftSpeed = 1f; 
@@ -40,7 +40,6 @@ public class UFOController : MonoBehaviour
 
     private void MoveUFO()
     {
-        // Calculate how much to move this frame based on total time
         float step = Time.deltaTime / secondsToTravel;
 
         if (_movingToB)
@@ -48,11 +47,9 @@ public class UFOController : MonoBehaviour
         else
             _movementProgress -= step;
 
-        // Swap directions when we hit the ends
         if (_movementProgress >= 1f) { _movementProgress = 1f; _movingToB = false; }
         else if (_movementProgress <= 0f) { _movementProgress = 0f; _movingToB = true; }
 
-        // Use SmoothStep for a heavy, drifting feel at the turns
         float smoothedT = Mathf.SmoothStep(0f, 1f, _movementProgress);
         transform.position = Vector3.Lerp(pointA.position, pointB.position, smoothedT);
     }
@@ -73,17 +70,12 @@ public class UFOController : MonoBehaviour
             float closeness = 1f - (horizontalDist / pullRadius);
             float pullPower = Mathf.Pow(closeness, 3) * maxPullStrength;
 
-            // 1. HORIZONTAL PULL (To the middle)
             float xDirection = Mathf.Sign(transform.position.x - _playerTransform.position.x);
             float xMovement = xDirection * pullPower * Time.deltaTime;
 
-            // 2. VERTICAL PULL (Sucking them up)
-            // We only pull UP, never down. 
-            // This creates the "anti-gravity" feel inside the beam.
             float yMovement = 0f;
             if (_playerTransform.position.y < transform.position.y)
             {
-                // The closer to the center, the more they defy gravity
                 yMovement = pullPower * 0.5f * Time.deltaTime; 
             }
             
@@ -94,10 +86,8 @@ public class UFOController : MonoBehaviour
     private void PerformAbduction()
     {
         Vector3 targetPos = transform.position;
-        // Move the player position
         _playerTransform.position = Vector3.MoveTowards(_playerTransform.position, targetPos, liftSpeed * Time.deltaTime);
 
-        // NO ROTATION HERE - AbductionVisual handles the sprite tilt
         
         if (Vector2.Distance(_playerTransform.position, targetPos) < 0.2f)
         {
@@ -111,8 +101,6 @@ public class UFOController : MonoBehaviour
         {
             _isAbducting = true;
 
-            // 1. STOP ALL OTHER SHAKES IMMEDIATELY
-            // This kills the door shake if it just started
             CinemachineImpulseManager.Instance.Clear();
 
             _playerRb = other.GetComponent<Rigidbody2D>();
@@ -126,7 +114,6 @@ public class UFOController : MonoBehaviour
                 _playerRb.isKinematic = true; 
             }
 
-            // 2. TRIGGER THE UFO SHAKE ONLY (on Layer 1)
             if (impulseSource != null) 
             {
                 impulseSource.GenerateImpulse(); 
