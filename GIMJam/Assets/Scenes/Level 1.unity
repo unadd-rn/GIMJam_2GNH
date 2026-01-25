@@ -378,7 +378,7 @@ Transform:
   m_GameObject: {fileID: 267072192}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.326, y: 0.406, z: 0}
+  m_LocalPosition: {x: 0.461, y: 0.441, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2873,7 +2873,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5641589558113106897, guid: e2e19eb62f9682b4cb61268fe971c2ef, type: 3}
       propertyPath: m_Name
-      value: EnemyShoot
+      value: EnemyShoot (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8645033882054509811, guid: e2e19eb62f9682b4cb61268fe971c2ef, type: 3}
       propertyPath: shootEvery
