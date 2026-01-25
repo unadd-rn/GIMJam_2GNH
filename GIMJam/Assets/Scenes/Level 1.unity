@@ -4936,7 +4936,7 @@ MonoBehaviour:
   secondsToTravel: 30
   liftSpeed: 1
   maxPullStrength: 2
-  pullRadius: 2
+  pullRadius: 3
   playerTag: Player
   impulseSource: {fileID: 1680840141}
 --- !u!114 &1680840141
