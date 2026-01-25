@@ -2704,8 +2704,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12f9a4ae322bf940ab2a24155f509d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
   robot: {fileID: 6696180168033552714}
+  spriteRenderer: {fileID: 0}
+  type: 3
+  activeSprite: {fileID: 0}
+  inactiveSprite: {fileID: 0}
 --- !u!212 &728541109
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3217,8 +3220,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12f9a4ae322bf940ab2a24155f509d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
   robot: {fileID: 6696180168033552714}
+  spriteRenderer: {fileID: 0}
+  type: 0
+  activeSprite: {fileID: 0}
+  inactiveSprite: {fileID: 0}
 --- !u!212 &789558751
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3789,8 +3795,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12f9a4ae322bf940ab2a24155f509d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
   robot: {fileID: 6696180168033552714}
+  spriteRenderer: {fileID: 0}
+  type: 2
+  activeSprite: {fileID: 0}
+  inactiveSprite: {fileID: 0}
 --- !u!212 &1061946830
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4123,7 +4132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1192055755
 Transform:
   m_ObjectHideFlags: 0
@@ -6251,8 +6260,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12f9a4ae322bf940ab2a24155f509d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
   robot: {fileID: 6696180168033552714}
+  spriteRenderer: {fileID: 0}
+  type: 1
+  activeSprite: {fileID: 0}
+  inactiveSprite: {fileID: 0}
 --- !u!212 &2134433561
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6758,19 +6770,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2268ab48cc297764a9607bc9fc8eb5e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 3
+  health: 3
   healthbar: {fileID: 0}
   bar1: {fileID: 0}
   bar2: {fileID: 0}
   bar3: {fileID: 0}
-  m_Script: {fileID: 11500000, guid: 19a4e1d28ce61684f9e7adff101250bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerVCam: {fileID: 987007298}
-  spriteChild: {fileID: 6968775101307698368}
-  duration: 3
-  targetZoom: 1
-  targetLensShiftY: 0.6
 --- !u!114 &6696180168033552716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41440,3 +41444,4 @@ SceneRoots:
   - {fileID: 987007299}
   - {fileID: 978482636}
   - {fileID: 269028114}
+  - {fileID: 548428426}
