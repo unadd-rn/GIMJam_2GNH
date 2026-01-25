@@ -36,7 +36,6 @@ public class PlayerBulletScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            // Trigger Freeze and Shake (0.1s duration, 3.0 intensity)
             if(HitStopManager.Instance != null) 
                 HitStopManager.Instance.Stop(0.1f, 3f);
 
