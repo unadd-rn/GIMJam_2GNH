@@ -68,7 +68,7 @@ public class ControlPlate : MonoBehaviour
                 robot.ExternalJumpHeld = isActive;
                 break;
             case PlateType.Attack:
-                //attack trigger
+                robot.ExternalAttackDown = isActive;
                 break;
         }
     }

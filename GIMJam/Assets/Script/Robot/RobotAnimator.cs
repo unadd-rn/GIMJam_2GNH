@@ -2,29 +2,25 @@ using UnityEngine;
 
 namespace RobotController
 {
-    /// <summary>
-    /// VERY primitive animator example.
-    /// </summary>
     public class PlayerAnimator : MonoBehaviour
     {
-        [Header("References")] [SerializeField]
-        private Animator _anim;
-
+        [Header("References")] 
+        [SerializeField] private Animator _anim;
         [SerializeField] private SpriteRenderer _sprite;
 
-        [Header("Settings")] [SerializeField, Range(1f, 3f)]
-        private float _maxIdleSpeed = 2;
-
+        [Header("Settings")] 
+        [SerializeField, Range(1f, 3f)] private float _maxIdleSpeed = 2;
         [SerializeField] private float _maxTilt = 5;
         [SerializeField] private float _tiltSpeed = 20;
 
-        [Header("Particles")] [SerializeField] private ParticleSystem _jumpParticles;
+        [Header("Particles")] 
+        [SerializeField] private ParticleSystem _jumpParticles;
         [SerializeField] private ParticleSystem _launchParticles;
         [SerializeField] private ParticleSystem _moveParticles;
         [SerializeField] private ParticleSystem _landParticles;
 
-        [Header("Audio Clips")] [SerializeField]
-        private AudioClip[] _footsteps;
+        [Header("Audio Clips")] 
+        [SerializeField] private AudioClip[] _footsteps;
 
         private AudioSource _source;
         private IPlayerController _player;
@@ -41,7 +37,6 @@ namespace RobotController
         {
             _player.Jumped += OnJumped;
             _player.GroundedChanged += OnGroundedChanged;
-
             _moveParticles.Play();
         }
 
@@ -49,7 +44,6 @@ namespace RobotController
         {
             _player.Jumped -= OnJumped;
             _player.GroundedChanged -= OnGroundedChanged;
-
             _moveParticles.Stop();
         }
 
@@ -58,30 +52,42 @@ namespace RobotController
             if (_player == null) return;
 
             DetectGroundColor();
-
-            HandleSpriteFlip();
-
+            HandleWalkingState(); // New walking logic
             HandleIdleSpeed();
-
             HandleCharacterTilt();
         }
 
-        private void HandleSpriteFlip()
+        private void HandleWalkingState()
         {
-            if (_player.FrameInput.x != 0) _sprite.flipX = _player.FrameInput.x < 0;
+            // Check if there is any horizontal input
+            bool isWalking = Mathf.Abs(_player.FrameInput.x) > 0.01f;
+            
+            // Update the animator boolean
+            _anim.SetBool(WalkingKey, isWalking);
         }
 
         private void HandleIdleSpeed()
         {
             var inputStrength = Mathf.Abs(_player.FrameInput.x);
             _anim.SetFloat(IdleSpeedKey, Mathf.Lerp(1, _maxIdleSpeed, inputStrength));
-            _moveParticles.transform.localScale = Vector3.MoveTowards(_moveParticles.transform.localScale, Vector3.one * inputStrength, 2 * Time.deltaTime);
+            
+            _moveParticles.transform.localScale = Vector3.MoveTowards(
+                _moveParticles.transform.localScale, 
+                Vector3.one * inputStrength, 
+                2 * Time.deltaTime
+            );
         }
 
         private void HandleCharacterTilt()
         {
-            var runningTilt = _grounded ? Quaternion.Euler(0, 0, _maxTilt * _player.FrameInput.x) : Quaternion.identity;
-            _anim.transform.up = Vector3.RotateTowards(_anim.transform.up, runningTilt * Vector2.up, _tiltSpeed * Time.deltaTime, 0f);
+            var targetZ = _grounded ? -_player.FrameInput.x * _maxTilt : 0;
+            Quaternion targetRotation = Quaternion.Euler(0, 0, targetZ);
+
+            _anim.transform.localRotation = Quaternion.RotateTowards(
+                _anim.transform.localRotation, 
+                targetRotation, 
+                _tiltSpeed * 10 * Time.deltaTime
+            );
         }
 
         private void OnJumped()
@@ -89,8 +95,7 @@ namespace RobotController
             _anim.SetTrigger(JumpKey);
             _anim.ResetTrigger(GroundedKey);
 
-
-            if (_grounded) // Avoid coyote
+            if (_grounded)
             {
                 SetColor(_jumpParticles);
                 SetColor(_launchParticles);
@@ -136,8 +141,13 @@ namespace RobotController
             main.startColor = _currentGradient;
         }
 
+        public void PlayAttack() => _anim.SetTrigger(AttackKey);
+
+        // Animator Hashes
         private static readonly int GroundedKey = Animator.StringToHash("Grounded");
         private static readonly int IdleSpeedKey = Animator.StringToHash("IdleSpeed");
         private static readonly int JumpKey = Animator.StringToHash("Jump");
+        private static readonly int WalkingKey = Animator.StringToHash("IsWalking");
+        private static readonly int AttackKey = Animator.StringToHash("Attack");
     }
 }
