@@ -17,8 +17,6 @@ public class RobotHealth : MonoBehaviour
         UpdateUI();
     }
 
-    // Inside RobotHealth.cs
-
     public void TakeDamage(float amount, Vector2 hazardPosition)
     {
         health -= amount;
