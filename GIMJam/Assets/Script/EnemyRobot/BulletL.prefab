@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 5
   ToRight: 0
-  DisappearTime: 2
+  DisappearTime: 1.7
 --- !u!61 &1320789584888881602
 BoxCollider2D:
   m_ObjectHideFlags: 0
