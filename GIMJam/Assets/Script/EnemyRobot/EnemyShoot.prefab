@@ -43,9 +43,11 @@ GameObject:
   - component: {fileID: 6484672268920875791}
   - component: {fileID: 8645033882054509811}
   - component: {fileID: 5674415197707300297}
+  - component: {fileID: 4621464181514949979}
+  - component: {fileID: 2442050882497743384}
   m_Layer: 0
   m_Name: EnemyShoot
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,6 +135,8 @@ MonoBehaviour:
   bullet: {fileID: 126167401268997267, guid: ee613bb2b502ee54393ee502085ef59c, type: 3}
   bulletPos: {fileID: 2902968728659199883}
   shootEvery: 4
+  floatAmplitude: 0.2
+  floatFrequency: 1.5
 --- !u!95 &5674415197707300297
 Animator:
   serializedVersion: 5
@@ -154,3 +158,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4621464181514949979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5641589558113106897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2000dcd3ce360c4ba47b780d85825dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  _deathEffectPrefab: {fileID: 0}
+--- !u!114 &2442050882497743384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5641589558113106897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90119ed3b26bbc48850b5285dc64a12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

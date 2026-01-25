@@ -8,6 +8,7 @@ namespace RobotController
     public class RobotController : MonoBehaviour, IPlayerController
     {
         [SerializeField] private ScriptableStatsRobot _stats;
+        [SerializeField] private Transform _visuals;
 
         private Rigidbody2D _rb;
         private CapsuleCollider2D _col;
@@ -35,7 +36,8 @@ namespace RobotController
         public event Action Jumped;
         #endregion
 
-        private int _facingDirection = 1; // 1 = right, -1 = left
+        private int _facingDirection = 1;
+        public int FacingDirection => _facingDirection;
         private float _time;
 
         private void Awake()
@@ -243,6 +245,12 @@ namespace RobotController
             if (_frameInput.Move.x != 0)
             {
                 _facingDirection = (int)Mathf.Sign(_frameInput.Move.x);
+
+                if (_visuals != null)
+                {
+                    float rotationY = _facingDirection == 1 ? 180 : 0;
+                    _visuals.rotation = Quaternion.Euler(0, rotationY, 0);
+                }
             }
 
             float targetSpeed = _frameInput.Move.x * _stats.MaxSpeed;
@@ -305,6 +313,13 @@ namespace RobotController
             {
                 _rb.velocity = _frameVelocity;
             }
+        }
+
+        public void ApplyKnockback(Vector2 force)
+        {
+            // Reset velocity first so the knockback is consistent
+            _rb.velocity = Vector2.zero; 
+            _rb.AddForce(force, ForceMode2D.Impulse);
         }
 
 #if UNITY_EDITOR

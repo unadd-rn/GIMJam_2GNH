@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBulletScript : MonoBehaviour
+public class PlayerBulletScript : MonoBehaviour
 {
     private Rigidbody2D rb;
     private float timer;
@@ -34,13 +34,18 @@ public class EnemyBulletScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) 
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            RobotHealth playerHealth = other.gameObject.GetComponent<RobotHealth>();
-            if(playerHealth != null)
+            // Trigger Freeze and Shake (0.1s duration, 3.0 intensity)
+            if(HitStopManager.Instance != null) 
+                HitStopManager.Instance.Stop(0.1f, 3f);
+
+            EnemyHealth enemy = other.gameObject.GetComponent<EnemyHealth>();
+            if(enemy != null)
             {
-                playerHealth.TakeDamage(1, transform.position); 
+                enemy.TakeDamage(1);
             }
+
             Destroy(gameObject);
         }       
     }
