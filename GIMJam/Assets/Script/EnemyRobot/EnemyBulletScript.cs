@@ -36,7 +36,7 @@ public class EnemyBulletScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Player"))
         {
-            //other.gameObject.GetComponent<sriptyg ada health>().health -= 1
+            other.gameObject.GetComponent<RobotHealth>().health -= 1;
             Destroy(gameObject);
         }       
     }
