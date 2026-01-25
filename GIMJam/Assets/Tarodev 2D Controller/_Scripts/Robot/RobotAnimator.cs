@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 namespace RobotController
 {
@@ -86,16 +87,29 @@ namespace RobotController
 
         private void OnJumped()
         {
+            // 1. Play Charge Animation
+            _anim.SetTrigger(ChargeKey); 
+
+            // 2. Start the delay
+            StartCoroutine(JumpChargeRoutine());
+        }
+
+        private IEnumerator JumpChargeRoutine()
+        {
+            // 1. Lock movement
+            _player.IsInputLocked = true;
+            _anim.SetTrigger(ChargeKey); 
+
+            yield return new WaitForSeconds(0.2f); 
+
+            // 2. Unlock movement and Blast off!
+            _player.IsInputLocked = false;
+            _player.ApplyJumpForce(); 
+            
             _anim.SetTrigger(JumpKey);
-            _anim.ResetTrigger(GroundedKey);
-
-
-            if (_grounded) // Avoid coyote
-            {
-                SetColor(_jumpParticles);
-                SetColor(_launchParticles);
-                _jumpParticles.Play();
-            }
+            _launchParticles.Play(); 
+            SetColor(_jumpParticles);
+            _jumpParticles.Play();
         }
 
         private void OnGroundedChanged(bool grounded, float impact)
@@ -139,5 +153,6 @@ namespace RobotController
         private static readonly int GroundedKey = Animator.StringToHash("Grounded");
         private static readonly int IdleSpeedKey = Animator.StringToHash("IdleSpeed");
         private static readonly int JumpKey = Animator.StringToHash("Jump");
+        private static readonly int ChargeKey = Animator.StringToHash("Charge");
     }
 }

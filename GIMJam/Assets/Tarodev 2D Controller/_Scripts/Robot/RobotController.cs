@@ -24,6 +24,7 @@ namespace RobotController
         // Double jump
         private int _maxJumps = 1;
         private int _jumpsRemaining;
+        public bool IsInputLocked { get; set; }
 
         // Wall thingy
         private bool _onWall;
@@ -38,11 +39,16 @@ namespace RobotController
         private int _facingDirection = 1; // 1 = right, -1 = left
         private float _time;
 
+        [Header("Cinemachine")]
+        private CinemachineImpulseSource _impulse;
+
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
             _col = GetComponent<CapsuleCollider2D>();
             _cachedQueryStartInColliders = Physics2D.queriesStartInColliders;
+
+            _impulse = GetComponent<CinemachineImpulseSource>();
         }
 
         private void Update()
@@ -206,11 +212,12 @@ namespace RobotController
             }
             else if (_grounded || CanUseCoyote) 
             {
-                ExecuteJump();
+                // ExecuteJump(); <-- Remove this
+                PrepareJump(); // Add this
             }
             else if (_jumpsRemaining > 0)
             {
-                ExecuteJump();
+                PrepareJump(); 
                 _jumpsRemaining--;
             }
             else
@@ -219,6 +226,27 @@ namespace RobotController
             }
 
             _jumpToConsume = false;
+        }
+
+        private void PrepareJump()
+        {
+            _endedJumpEarly = false;
+            _timeJumpWasPressed = 0;
+            _bufferedJumpUsable = false;
+            _coyoteUsable = false;
+
+            Jumped?.Invoke(); 
+        }
+
+        // This is called by the Animator script after the charge delay
+        public void ApplyJumpForce(float multiplier = 1f)
+        {
+            float currentJumpPower = _isStickyGround ? _stats.JumpPower * 0.5f : _stats.JumpPower;
+            _frameVelocity.y = currentJumpPower * multiplier;
+            
+            // We set grounded to false immediately so gravity takes over
+            _grounded = false; 
+            if(_impulse != null) _impulse.GenerateImpulse();
         }
 
         private void ExecuteJump()
@@ -240,12 +268,14 @@ namespace RobotController
 
         private void HandleDirection()
         {
-            if (_frameInput.Move.x != 0)
+            float horizontalInput = IsInputLocked ? 0 : _frameInput.Move.x;
+
+            if (horizontalInput != 0)
             {
-                _facingDirection = (int)Mathf.Sign(_frameInput.Move.x);
+                _facingDirection = (int)Mathf.Sign(horizontalInput);
             }
 
-            float targetSpeed = _frameInput.Move.x * _stats.MaxSpeed;
+            float targetSpeed = horizontalInput * _stats.MaxSpeed;
 
             if (_isStickyGround || _onWall)
             {
@@ -269,6 +299,12 @@ namespace RobotController
 
         private void HandleGravity()
         {
+            if (IsInputLocked) 
+            {
+                _frameVelocity.y = 0;
+                return;
+            }
+
             if (_onWall && _frameVelocity.y < 0)
             {
                 _frameVelocity.y = Mathf.MoveTowards(_frameVelocity.y, -_stats.WallSlideSpeed, _stats.FallAcceleration * Time.fixedDeltaTime);
@@ -327,5 +363,7 @@ namespace RobotController
         public event Action<bool, float> GroundedChanged;
         public event Action Jumped;
         public Vector2 FrameInput { get; }
+        public void ApplyJumpForce(float multiplier = 1f); 
+        public bool IsInputLocked { get; set; }
     }
 }
