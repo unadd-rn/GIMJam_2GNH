@@ -290,6 +290,7 @@ namespace TarodevController
             if (_frameInput.Move.x != 0)
             {
                 _facingDirection = (int)Mathf.Sign(_frameInput.Move.x);
+                transform.localScale = new Vector3(-_facingDirection, 1, 1);
             }
 
             // Determine target speed and acceleration

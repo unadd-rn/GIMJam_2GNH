@@ -59,17 +59,11 @@ namespace TarodevController
 
             DetectGroundColor();
 
-            HandleSpriteFlip();
-
             HandleIdleSpeed();
 
             HandleCharacterTilt();
         }
 
-        private void HandleSpriteFlip()
-        {
-            if (_player.FrameInput.x != 0) _sprite.flipX = _player.FrameInput.x > 0;
-        }
 
         private void HandleIdleSpeed()
         {
