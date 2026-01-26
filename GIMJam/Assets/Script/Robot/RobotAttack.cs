@@ -51,7 +51,7 @@ namespace RobotController
         {
             if (_bulletPrefab == null || _firePoint == null) return;
 
-            GameObject bullet = Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+            GameObject bullet = Instantiate(_bulletPrefab, _firePoint.position, Quaternion.identity);
             
             if (bullet.TryGetComponent(out PlayerBulletScript bulletScript))
             {

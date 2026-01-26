@@ -12,10 +12,11 @@ public class PlayerBulletScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        if (ToRight)
-            rb.velocity = Vector2.right * force;
-        else
-            rb.velocity = Vector2.left * force;
+        float direction = ToRight ? 1f : -1f;
+
+        rb.velocity = Vector2.right * direction * force;
+
+        transform.localScale = new Vector3(direction, 1, 1);
     }
 
     void OnTriggerEnter2D(Collider2D other) 
