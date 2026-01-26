@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class RobotHealth : MonoBehaviour
@@ -7,6 +6,7 @@ public class RobotHealth : MonoBehaviour
     public float health = 3;
     public GameObject healthbar;
     public GameObject bar1, bar2, bar3;
+    public static event Action OnRobotHit;
 
     [Header("Effects")]
     [SerializeField] private HitFlash _hitFlash;
@@ -20,6 +20,8 @@ public class RobotHealth : MonoBehaviour
     public void TakeDamage(float amount, Vector2 hazardPosition)
     {
         health -= amount;
+
+        OnRobotHit?.Invoke();
 
         if(HitStopManager.Instance != null) HitStopManager.Instance.Stop(0.15f, 5f);
 
