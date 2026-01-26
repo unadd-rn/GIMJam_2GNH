@@ -50,6 +50,21 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator LevelCompleteSequence()
     {
+        //ini buat PlayerPref
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        if (currentSceneName == "Level 1")
+        {
+            PlayerPrefs.SetString("SavedLevel", "Level 2");
+        }
+       // else if (currentSceneName == "Level 2")
+        //{
+          //  PlayerPrefs.SetString("SavedLevel", "Level 3");
+        //}ini gw matiin dulu soalnya belum ada
+
+        PlayerPrefs.Save();
+        
+        Debug.Log("Progres disimpan: " + PlayerPrefs.GetString("SavedLevel"));
+            //Player Pref end, masuk ke animasi
         FreezeObjectsByTag("Player");
         FreezeObjectsByTag("Enemy");
 
