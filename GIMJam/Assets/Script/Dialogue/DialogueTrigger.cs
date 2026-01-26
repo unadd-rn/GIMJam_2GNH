@@ -7,18 +7,17 @@ public class DialogueTrigger : MonoBehaviour
     [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
 
-    private void Start()
+    // Inside your DialogueTrigger.cs
+    void Start() 
     {
-        StartCoroutine(StartDialogueWithDelay());
+        // If this trigger is meant to start as soon as the level loads
+        StartCoroutine(WaitToStart());
     }
 
-    private IEnumerator StartDialogueWithDelay()
+    private IEnumerator WaitToStart() 
     {
-        yield return null; 
-
-        //yieldnya buat nunggu 1 frame biar gak bentrok ama si manager yg bikin false
-
-        Debug.Log("Sekarang masuk ke Dialogue Mode");
+        // Wait until the very end of the first frame
+        yield return new WaitForEndOfFrame();
         DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
     }
 }
