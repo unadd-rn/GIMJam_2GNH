@@ -9,19 +9,14 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Start()
     {
-        // Kita jalankan Coroutine-nya di sini
         StartCoroutine(StartDialogueWithDelay());
     }
 
     private IEnumerator StartDialogueWithDelay()
     {
-        Debug.Log("Menunggu satu frame agar tidak tabrakan...");
-        
-        // Opsi 1: Tunggu 1 frame (biasanya cukup untuk mengatasi konflik Start)
         yield return null; 
 
-        // Opsi 2: Kalau 1 frame masih kurang, pakai jeda waktu (misal 0.1 detik)
-        // yield return new WaitForSeconds(0.1f);
+        //yieldnya buat nunggu 1 frame biar gak bentrok ama si manager yg bikin false
 
         Debug.Log("Sekarang masuk ke Dialogue Mode");
         DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
