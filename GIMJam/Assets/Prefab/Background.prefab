@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4, y: -0}
+  m_AnchoredPosition: {x: -4, y: 0}
   m_SizeDelta: {x: 640, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3261291878648455293
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c2272ff22aea68545bcc867515853818, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6455f728892e2484c82927704f096282, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 397696781829196682}
   - component: {fileID: 1726255751294372229}
   m_Layer: 5
-  m_Name: Layer-0
+  m_Name: Layer-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -273,7 +273,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 932256b85f9e11a4b86fbf88adeadfd7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9912f3599d8a3474b8982368b354c9ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 7230055317362839561}
   - component: {fileID: 8729878312359560453}
   m_Layer: 5
-  m_Name: Layer-2
+  m_Name: Layer-0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -331,7 +331,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4, y: -0}
+  m_AnchoredPosition: {x: -4, y: 0}
   m_SizeDelta: {x: 640, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1772734133916475212
@@ -362,7 +362,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c2272ff22aea68545bcc867515853818, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 21c9f9569c641a84fb3f1c2bfa5c7ecb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
