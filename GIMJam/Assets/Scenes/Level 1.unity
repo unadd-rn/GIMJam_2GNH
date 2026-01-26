@@ -7489,8 +7489,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.7}
-  m_Size: {x: 0.9, y: 1.4}
+  m_Offset: {x: -0.036151916, y: 0.45}
+  m_Size: {x: 0.82769614, y: 0.9}
   m_Direction: 0
 --- !u!1 &6696180168033552713
 GameObject:
@@ -17486,11 +17486,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _anim: {fileID: 6968775101307698371}
   _sprite: {fileID: 6968775101307698370}
-  _maxIdleSpeed: 2
   _maxTilt: 5
   _tiltSpeed: 20
-  _jumpParticles: {fileID: 6968775101859303062}
-  _launchParticles: {fileID: 6968775102044113155}
   _moveParticles: {fileID: 6968775100935080501}
   _landParticles: {fileID: 6968775100198931567}
   _footsteps:
@@ -32269,7 +32266,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1736445917, guid: 91d4077431f9f6747a62ee318acf8358, type: 3}
+  m_Sprite: {fileID: 7212330, guid: 91d4077431f9f6747a62ee318acf8358, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -32329,6 +32326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ba527d782a78d489edcfbc79ff6067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _targetScript: {fileID: 0}
 --- !u!96 &6968775101547680352
 TrailRenderer:
   serializedVersion: 3
