@@ -82,12 +82,23 @@ namespace TarodevController1
 
         private void GatherInput()
         {
-            _frameInput = new FrameInput
-            {
-                JumpDown = Input.GetButtonDown("Jump1") || Input.GetKeyDown(KeyCode.C),
-                JumpHeld = Input.GetButton("Jump1") || Input.GetKey(KeyCode.C),
-                Move = new Vector2(Input.GetAxisRaw("Horizontal1"), Input.GetAxisRaw("Vertical1"))
-            };
+            if (DialogueManager.GetInstance().dialogueIsPlaying)
+            {
+                _frameInput = new FrameInput
+                {
+                    JumpDown = false,
+                    JumpHeld = false,
+                    Move = Vector2.zero
+                };
+                return;
+            }
+
+            _frameInput = new FrameInput
+            {
+                JumpDown = Input.GetButtonDown("Jump1") || Input.GetKeyDown(KeyCode.C),
+                JumpHeld = Input.GetButton("Jump1") || Input.GetKey(KeyCode.C),
+                Move = new Vector2(Input.GetAxisRaw("Horizontal1"), Input.GetAxisRaw("Vertical1"))
+            };
 
             if (_stats.SnapInput)
             {
