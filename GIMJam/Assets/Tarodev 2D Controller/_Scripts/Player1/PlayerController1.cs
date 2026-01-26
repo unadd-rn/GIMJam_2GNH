@@ -149,6 +149,7 @@ namespace TarodevController1
 
             // Ground Detection
             RaycastHit2D groundHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer);
+
             bool isMovingPlatform = groundHit.collider != null && groundHit.collider.gameObject.layer == LayerMask.NameToLayer("MovingPlatform");
 
             if (isMovingPlatform) {
@@ -195,8 +196,7 @@ namespace TarodevController1
             }
 
             Physics2D.queriesStartInColliders = _cachedQueryStartInColliders;
-            // This will draw a red line in your Scene view showing exactly where the "feet" are looking
-            Debug.DrawRay(_col.bounds.center, Vector2.down * (_col.size.y / 2 + _stats.GrounderDistance), groundHit ? Color.green : Color.red);
+             Debug.DrawRay(_col.bounds.center, Vector2.down * (_col.size.y / 2 + _stats.GrounderDistance), groundHit ? Color.green : Color.red);
         }
 
         #endregion
@@ -290,6 +290,7 @@ namespace TarodevController1
             if (_frameInput.Move.x != 0)
             {
                 _facingDirection = (int)Mathf.Sign(_frameInput.Move.x);
+                transform.localScale = new Vector3(-_facingDirection, 1, 1);
             }
 
             // Determine target speed and acceleration
