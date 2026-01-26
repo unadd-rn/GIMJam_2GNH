@@ -43,7 +43,6 @@ namespace RobotController
             {
                 int layerIndex = _anim.GetLayerIndex("Attack");
 
-                // Stop any existing routine to avoid weight-flicker
                 if (_attackRoutine != null) StopCoroutine(_attackRoutine);
                 _attackRoutine = StartCoroutine(AttackSequence(layerIndex));
             }
@@ -51,17 +50,12 @@ namespace RobotController
 
         private System.Collections.IEnumerator AttackSequence(int layer)
         {
-            // 1. Turn on the layer so we can actually see the attack
             _anim.SetLayerWeight(layer, 1f);
             
-            // 2. Play the animation
             _anim.SetTrigger("Attack");
 
-            // 3. Wait for the duration of your 4 frames (0.6s)
-            // IMPORTANT: If your transition has 'Exit Time', add that time here too
             yield return new WaitForSeconds(0.6f);
 
-            // 4. Turn the layer off so the Base Layer (Idle) is visible again
             _anim.SetLayerWeight(layer, 0f);
         }
 

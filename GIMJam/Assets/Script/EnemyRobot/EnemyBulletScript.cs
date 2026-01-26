@@ -42,6 +42,11 @@ public class EnemyBulletScript : MonoBehaviour
                 playerHealth.TakeDamage(1, transform.position); 
             }
             Destroy(gameObject);
-        }       
+        }
+        
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

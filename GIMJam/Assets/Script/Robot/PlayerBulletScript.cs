@@ -34,5 +34,10 @@ public class PlayerBulletScript : MonoBehaviour
 
             Destroy(gameObject);
         }
+        
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
