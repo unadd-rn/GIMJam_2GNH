@@ -8,6 +8,8 @@ public class RobotHealth : MonoBehaviour
     public GameObject healthbar;
     public GameObject bar1, bar2, bar3;
     public static event Action OnRobotHit;
+    private float _lastDamageTime;
+    [SerializeField] private float _damageCooldown = 1.0f; //stop jittering anjay
 
     [Header("Effects")]
     [SerializeField] private HitFlash _hitFlash;
@@ -17,6 +19,18 @@ public class RobotHealth : MonoBehaviour
         if(DeathUI != null) DeathUI.SetActive(false);
         health = 3;
         UpdateUI();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            if (Time.time >= _lastDamageTime + _damageCooldown)
+            {
+                TakeDamage(1f, collision.transform.position);
+                _lastDamageTime = Time.time;
+            }
+        }
     }
 
     public void TakeDamage(float amount, Vector2 hazardPosition)
