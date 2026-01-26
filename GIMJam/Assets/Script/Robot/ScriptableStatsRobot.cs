@@ -75,8 +75,7 @@ namespace RobotController
         public float WallDetectorDistance = 0.1f;
 
         [Header("WALL CLIMB")]
-        public float WallClimbVerticalForce = 42f; // Higher than your normal JumpPower (36)
-        public float WallClimbHorizontalForce = 4f; // Very small push away
-
+        public float WallClimbVerticalForce = 42f;
+        public float WallClimbHorizontalForce = 4f;
     }
 }

@@ -6,7 +6,6 @@ public class CameraLock : MonoBehaviour
     private CinemachineVirtualCamera vCam;
     private CinemachineTransposer transposer;
     
-    // Set these to your preferred values in the inspector
     public float lockedZ = -10f;
     public float lockedYOffset = 0.4f;
 
