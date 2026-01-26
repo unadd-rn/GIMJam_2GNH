@@ -38,6 +38,21 @@ namespace RobotController
         {
             _player.Jumped += OnJumped;
             _player.GroundedChanged += OnGroundedChanged;
+            
+            RobotHealth.OnRobotHit += PlayHitAnimation; 
+        }
+
+        private void OnDisable()
+        {
+            _player.Jumped -= OnJumped;
+            _player.GroundedChanged -= OnGroundedChanged;
+            
+            RobotHealth.OnRobotHit -= PlayHitAnimation;
+        }
+
+        private void PlayHitAnimation()
+        {
+            _anim.Play(HitKey, 0, 0.25f); 
         }
 
         private void Update()
@@ -117,5 +132,6 @@ namespace RobotController
         private static readonly int GroundedKey = Animator.StringToHash("Grounded");
         private static readonly int JumpKey = Animator.StringToHash("Jump");
         private static readonly int WalkingKey = Animator.StringToHash("IsWalking");
+        private static readonly int HitKey = Animator.StringToHash("Hit");
     }
 }
