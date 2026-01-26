@@ -29,7 +29,6 @@ public class HitStopManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(duration);
         Time.timeScale = 1f;
 
-
         if (_noise != null) _noise.m_AmplitudeGain = 0f;
     }
 }
