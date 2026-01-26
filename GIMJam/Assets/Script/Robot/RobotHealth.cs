@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class RobotHealth : MonoBehaviour
 {
+    public GameObject DeathUI;
     public float health = 3;
     public GameObject healthbar;
     public GameObject bar1, bar2, bar3;
@@ -13,6 +14,7 @@ public class RobotHealth : MonoBehaviour
 
     void Start()
     {
+        if(DeathUI != null) DeathUI.SetActive(false);
         health = 3;
         UpdateUI();
     }
@@ -48,5 +50,7 @@ public class RobotHealth : MonoBehaviour
     {
         Debug.Log("Robot Destroyed!");
         // ? like death stuff
+        Time.timeScale = 0f;
+        if(DeathUI != null) DeathUI.SetActive(true);
     }
 }

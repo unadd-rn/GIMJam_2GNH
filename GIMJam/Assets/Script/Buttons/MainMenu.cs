@@ -22,8 +22,10 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("[MainMenu]new game");
 
-        PlayerPrefs.DeleteAll();
-        SceneManager.LoadScene("Scene");
+        //PlayerPrefs.DeleteAll();
+        //ini aku ganti sama yang bawah soalnya dia bakal reset setting sound juga
+        PlayerPrefs.DeleteKey("SavedLevel");
+        SceneManager.LoadScene("Level 1");
     }
 
     public void QuitGame()
