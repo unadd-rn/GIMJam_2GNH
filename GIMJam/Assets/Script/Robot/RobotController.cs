@@ -25,6 +25,7 @@ namespace RobotController
         // Double jump
         private int _maxJumps = 1;
         private int _jumpsRemaining;
+        private bool _isJumping;
 
         // Wall thingy
         private bool _onWall;
@@ -60,27 +61,19 @@ namespace RobotController
         [HideInInspector] public bool ExternalJumpHeld;
         [HideInInspector] public bool ExternalAttackDown;
 
+
         private void GatherInput()
         {
-            _frameInput = new FrameInput
-            {
-                JumpDown = ExternalJumpDown,
-                JumpHeld = ExternalJumpHeld,
-                Move = new Vector2(ExternalMoveX, 0)
-            };
-
-            // Reset
-            ExternalJumpDown = false;
-
-            if (_stats.SnapInput)
-            {
-                _frameInput.Move.x = Mathf.Abs(_frameInput.Move.x) < _stats.HorizontalDeadZoneThreshold ? 0 : Mathf.Sign(_frameInput.Move.x);
-            }
+            _frameInput.JumpDown = ExternalJumpDown;
+            _frameInput.JumpHeld = ExternalJumpHeld;
+            _frameInput.Move = new Vector2(ExternalMoveX, 0);
 
             if (_frameInput.JumpDown)
             {
                 _jumpToConsume = true;
                 _timeJumpWasPressed = _time;
+                
+                ExternalJumpDown = false; 
             }
         }
 
@@ -224,15 +217,28 @@ namespace RobotController
 
         private void ExecuteJump()
         {
+            if (_isJumping) return;
+            
+            _isJumping = true;
             _endedJumpEarly = false;
             _timeJumpWasPressed = 0;
             _bufferedJumpUsable = false;
             _coyoteUsable = false;
 
-            float currentJumpPower = _isStickyGround ? _stats.JumpPower * 0.5f : _stats.JumpPower;
+            Jumped?.Invoke(); 
+
+            StartCoroutine(JumpForceDelay());
+        }
+
+        private System.Collections.IEnumerator JumpForceDelay()
+        {
+            yield return new WaitForSeconds(0.16f); 
             
+            float currentJumpPower = _isStickyGround ? _stats.JumpPower * 0.5f : _stats.JumpPower;
             _frameVelocity.y = currentJumpPower;
-            Jumped?.Invoke();
+            _grounded = false;
+            
+            _isJumping = false;
         }
 
         #endregion
@@ -316,7 +322,6 @@ namespace RobotController
 
         public void ApplyKnockback(Vector2 force)
         {
-            // Reset velocity first so the knockback is consistent
             _rb.velocity = Vector2.zero; 
             _rb.AddForce(force, ForceMode2D.Impulse);
         }

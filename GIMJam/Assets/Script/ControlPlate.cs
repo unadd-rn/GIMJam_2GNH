@@ -49,26 +49,32 @@ public class ControlPlate : MonoBehaviour
     private void UpdatePlateState(bool isActive)
     {
         if (spriteRenderer != null)
-        {
             spriteRenderer.sprite = isActive ? activeSprite : inactiveSprite;
-        }
 
         if (robot == null) return;
 
         switch (type)
         {
+            case PlateType.Jump:
+                // This tells the robot the button is CURRENTLY being held
+                robot.ExternalJumpHeld = isActive;
+                
+                // This sends the "Initial Press" signal only when stepping ON
+                if (isActive) 
+                {
+                    robot.ExternalJumpDown = true;
+                }
+                break;
+
+            case PlateType.Attack:
+                if (isActive) robot.ExternalAttackDown = true;
+                break;
+
             case PlateType.Left:
                 robot.ExternalMoveX = isActive ? -1f : 0f;
                 break;
             case PlateType.Right:
                 robot.ExternalMoveX = isActive ? 1f : 0f;
-                break;
-            case PlateType.Jump:
-                robot.ExternalJumpDown = isActive;
-                robot.ExternalJumpHeld = isActive;
-                break;
-            case PlateType.Attack:
-                robot.ExternalAttackDown = isActive;
                 break;
         }
     }
