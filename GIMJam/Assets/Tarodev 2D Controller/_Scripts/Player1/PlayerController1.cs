@@ -18,7 +18,7 @@ namespace TarodevController1
 
         // idk what this is
         private Rigidbody2D _rb;
-        private CapsuleCollider2D _col;
+        private BoxCollider2D _col;
         private FrameInput _frameInput;
         private Vector2 _frameVelocity;
         private bool _cachedQueryStartInColliders;
@@ -68,7 +68,7 @@ namespace TarodevController1
             _dashesRemaining = _stats.MaxDashes;
             
             _rb = GetComponent<Rigidbody2D>();
-            _col = GetComponent<CapsuleCollider2D>();
+            _col = GetComponent<BoxCollider2D>();
 
             _cachedQueryStartInColliders = Physics2D.queriesStartInColliders;
         }
@@ -144,60 +144,54 @@ namespace TarodevController1
         private bool _grounded;
 
         private void CheckCollisions()
-        {
-            Physics2D.queriesStartInColliders = false;
+        {
+            Physics2D.queriesStartInColliders = false;
 
-            // Ground Detection
-            RaycastHit2D groundHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer);
+            Vector2 boxSize = new Vector2(_col.size.x * 0.9f, 0.05f);
+            
+            float castDistance = _stats.GrounderDistance + 0.05f;
+            RaycastHit2D groundHit = Physics2D.BoxCast(_col.bounds.center, boxSize, 0, Vector2.down, (_col.size.y / 2) + _stats.GrounderDistance, ~_stats.PlayerLayer);
 
-            bool isMovingPlatform = groundHit.collider != null && groundHit.collider.gameObject.layer == LayerMask.NameToLayer("MovingPlatform");
+            bool isMovingPlatform = groundHit.collider != null && groundHit.collider.gameObject.layer == LayerMask.NameToLayer("MovingPlatform");
+            _activePlatformRb = isMovingPlatform ? groundHit.collider.GetComponent<Rigidbody2D>() : null;
 
-            if (isMovingPlatform) {
-                _activePlatformRb = groundHit.collider.GetComponent<Rigidbody2D>();
-            } else {
-                _activePlatformRb = null;
-            }
+            _isJumpBoostGround = groundHit.collider != null && groundHit.collider.gameObject.layer == LayerMask.NameToLayer("JumpBoost");
 
-            _isJumpBoostGround = groundHit.collider != null && groundHit.collider.gameObject.layer == LayerMask.NameToLayer("JumpBoost");
+            Vector2 wallBoxSize = new Vector2(0.05f, _col.size.y * 0.8f);
+            RaycastHit2D leftWallHit = Physics2D.BoxCast(_col.bounds.center, wallBoxSize, 0, Vector2.left, (_col.size.x / 2) + _stats.WallDetectorDistance, ~_stats.PlayerLayer);
+            RaycastHit2D rightWallHit = Physics2D.BoxCast(_col.bounds.center, wallBoxSize, 0, Vector2.right, (_col.size.x / 2) + _stats.WallDetectorDistance, ~_stats.PlayerLayer);
 
-            // Wall Detection 
-            RaycastHit2D leftWallHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.left, _stats.WallDetectorDistance, ~_stats.PlayerLayer);
-            RaycastHit2D rightWallHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.right, _stats.WallDetectorDistance, ~_stats.PlayerLayer);
+            bool leftWall = leftWallHit.collider != null;
+            bool rightWall = rightWallHit.collider != null;
 
-            bool leftWall = leftWallHit.collider != null;
-            bool rightWall = rightWallHit.collider != null;
+            // Sticky Logic
+            _isStickyWall = (leftWall && leftWallHit.collider.gameObject.layer == LayerMask.NameToLayer("Sticky")) ||
+                            (rightWall && rightWallHit.collider.gameObject.layer == LayerMask.NameToLayer("Sticky"));
+            _isStickyGround = groundHit.collider != null && groundHit.collider.gameObject.layer == LayerMask.NameToLayer("Sticky");
 
-            // Check "Sticky" layer
-            _isStickyWall = (leftWall && leftWallHit.collider.gameObject.layer == LayerMask.NameToLayer("Sticky")) ||
-                            (rightWall && rightWallHit.collider.gameObject.layer == LayerMask.NameToLayer("Sticky"));
+            _onWall = _isStickyWall && (leftWall || rightWall) && !_grounded && _rb.velocity.y < 0.1f;
+            _wallDir = rightWall ? 1 : -1;
 
-            _isStickyGround = groundHit.collider != null && groundHit.collider.gameObject.layer == LayerMask.NameToLayer("Sticky");
+            // Ground Logic
+            if (!_grounded && groundHit)
+            {
+                _grounded = true;
+                _jumpsRemaining = _maxJumps;
+                _dashesRemaining = _stats.MaxDashes;
+                _coyoteUsable = true;
+                _bufferedJumpUsable = true;
+                _endedJumpEarly = false;
+                GroundedChanged?.Invoke(true, Mathf.Abs(_frameVelocity.y));
+            }
+            else if (_grounded && !groundHit)
+            {
+                _grounded = false;
+                _frameLeftGrounded = _time;
+                GroundedChanged?.Invoke(false, 0);
+            }
 
-            //  Sticky wall
-            _onWall = _isStickyWall && (leftWall || rightWall) && !_grounded && _rb.velocity.y < 0.1f;
-            _wallDir = rightWall ? 1 : -1;
-
-            // Ground Logic
-            if (!_grounded && groundHit)
-            {
-                _grounded = true;
-                _jumpsRemaining = _maxJumps;
-                _dashesRemaining = _stats.MaxDashes;
-                _coyoteUsable = true;
-                _bufferedJumpUsable = true;
-                _endedJumpEarly = false;
-                GroundedChanged?.Invoke(true, Mathf.Abs(_frameVelocity.y));
-            }
-            else if (_grounded && !groundHit)
-            {
-                _grounded = false;
-                _frameLeftGrounded = _time;
-                GroundedChanged?.Invoke(false, 0);
-            }
-
-            Physics2D.queriesStartInColliders = _cachedQueryStartInColliders;
-             Debug.DrawRay(_col.bounds.center, Vector2.down * (_col.size.y / 2 + _stats.GrounderDistance), groundHit ? Color.green : Color.red);
-        }
+            Physics2D.queriesStartInColliders = _cachedQueryStartInColliders;
+        }
 
         #endregion
 
