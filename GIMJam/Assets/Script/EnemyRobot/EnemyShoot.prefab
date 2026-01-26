@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 5674415197707300297}
   - component: {fileID: 4621464181514949979}
   - component: {fileID: 2442050882497743384}
+  - component: {fileID: 1780585083413438776}
   m_Layer: 0
   m_Name: EnemyShoot
   m_TagString: Enemy
@@ -184,3 +185,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f90119ed3b26bbc48850b5285dc64a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!70 &1780585083413438776
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5641589558113106897}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 1}
+  m_Direction: 0

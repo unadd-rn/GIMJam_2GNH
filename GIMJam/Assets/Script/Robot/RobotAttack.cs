@@ -23,7 +23,6 @@ namespace RobotController
         {
             if (_controller == null) return;
 
-            // Use the signal from the controller
             if (_controller.ExternalAttackDown)
             {
                 if (Time.time >= _nextFireTime)
@@ -31,8 +30,6 @@ namespace RobotController
                     TriggerAttack();
                 }
                 
-                // Clear the signal immediately so we don't fire multiple times 
-                // from one button press
                 _controller.ExternalAttackDown = false;
             }
         }
@@ -46,12 +43,10 @@ namespace RobotController
             }
             else 
             {
-                // Fallback if there's no animator: shoot immediately
                 Shoot();
             }
         }
 
-        // Trigger this via Animation Event for perfect timing
         public void Shoot()
         {
             if (_bulletPrefab == null || _firePoint == null) return;
@@ -60,7 +55,6 @@ namespace RobotController
             
             if (bullet.TryGetComponent(out PlayerBulletScript bulletScript))
             {
-                // FacingDirection: 1 is Right, -1 is Left
                 bulletScript.ToRight = _controller.FacingDirection > 0;
             }
         }

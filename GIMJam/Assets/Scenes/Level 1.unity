@@ -17446,6 +17446,7 @@ GameObject:
   - component: {fileID: 6968775100317925891}
   - component: {fileID: 6968775100317925885}
   - component: {fileID: 6968775100317925892}
+  - component: {fileID: 6968775100317925893}
   m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
@@ -17496,6 +17497,59 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &6968775100317925893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6968775100317925888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 2
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -0.15, z: 0}
 --- !u!4 &6968775100696222004
 Transform:
   m_ObjectHideFlags: 0
@@ -32166,6 +32220,7 @@ GameObject:
   - component: {fileID: 6968775101307698370}
   - component: {fileID: 6968775101307698371}
   - component: {fileID: 6968775101307698372}
+  - component: {fileID: 6968775101307698373}
   m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
@@ -32262,6 +32317,18 @@ MonoBehaviour:
   _firePoint: {fileID: 267072193}
   _bulletPrefab: {fileID: 5749402082823666609, guid: 106ac391a6de3704d86d78503c3891b9, type: 3}
   _fireRate: 0.5
+--- !u!114 &6968775101307698373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6968775101307698369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57ba527d782a78d489edcfbc79ff6067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!96 &6968775101547680352
 TrailRenderer:
   serializedVersion: 3
