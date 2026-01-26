@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class HtFlash : MonoBehaviour
 {
-    [SerializeField] private Material _flashMaterial; // A material with a "White/Flash" shader
+    [SerializeField] private Material _flashMaterial;
     [SerializeField] private float _flashDuration = 0.1f;
 
     private SpriteRenderer _spriteRenderer;
