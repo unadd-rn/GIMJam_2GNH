@@ -9,7 +9,16 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("masuk");
+        StartCoroutine(StartDialogueWithDelay());
+    }
+
+    private IEnumerator StartDialogueWithDelay()
+    {
+        yield return null; 
+
+        //yieldnya buat nunggu 1 frame biar gak bentrok ama si manager yg bikin false
+
+        Debug.Log("Sekarang masuk ke Dialogue Mode");
         DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
     }
 }
