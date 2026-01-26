@@ -71,7 +71,6 @@ namespace RobotController
 
             // Reset
             ExternalJumpDown = false;
-            ExternalAttackDown = false; 
 
             if (_stats.SnapInput)
             {
