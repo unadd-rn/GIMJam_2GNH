@@ -214,7 +214,6 @@ GameObject:
   - component: {fileID: 4621464181514949979}
   - component: {fileID: 2442050882497743384}
   - component: {fileID: 1780585083413438776}
-  - component: {fileID: 8070276129513186809}
   m_Layer: 0
   m_Name: EnemyShoot
   m_TagString: Enemy
@@ -359,7 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f90119ed3b26bbc48850b5285dc64a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashMaterial: {fileID: 0}
+  flashMaterial: {fileID: 2100000, guid: 71a8ef9f121eefb42b92a12605b3e546, type: 2}
   flashDuration: 0.1
 --- !u!70 &1780585083413438776
 CapsuleCollider2D:
@@ -396,20 +395,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 1}
   m_Direction: 0
---- !u!114 &8070276129513186809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5641589558113106897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f90119ed3b26bbc48850b5285dc64a12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashMaterial: {fileID: 2100000, guid: 71a8ef9f121eefb42b92a12605b3e546, type: 2}
-  flashDuration: 0.1
 --- !u!1 &7357679323102304034
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,7 +420,7 @@ Transform:
   m_GameObject: {fileID: 7357679323102304034}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 0.61, z: 0}
+  m_LocalPosition: {x: 0.02, y: 0.61, z: 10}
   m_LocalScale: {x: 0.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

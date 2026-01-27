@@ -144,10 +144,10 @@ namespace RobotController
             }
 
             Physics2D.queriesStartInColliders = _cachedQueryStartInColliders;
-            if (groundHit.collider != null) 
+           /* if (groundHit.collider != null) 
                 Debug.Log("robot am touching: " + groundHit.collider.name + " on layer: " + LayerMask.LayerToName(groundHit.collider.gameObject.layer));
             else 
-                Debug.Log("robot am touching NOTHING");
+                Debug.Log("robot am touching NOTHING");*/
         }
 
         #endregion
