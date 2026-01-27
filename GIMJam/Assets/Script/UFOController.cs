@@ -30,13 +30,18 @@ public class UFOController : MonoBehaviour
     {
         if (!_isAbducting)
         {
-            MoveUFO();
+            if (!DialogueManager.GetInstance().dialogueIsPlaying)
+            {
+                MoveUFO();
+            }
             HandleMagneticPull();
         }
         else
         {
             PerformAbduction();
         }
+
+        
     }
 
     private void MoveUFO()
@@ -51,8 +56,8 @@ public class UFOController : MonoBehaviour
         if (_movementProgress >= 1f) { _movementProgress = 1f; _movingToB = false; }
         else if (_movementProgress <= 0f) { _movementProgress = 0f; _movingToB = true; }
 
-        float smoothedT = Mathf.SmoothStep(0f, 1f, _movementProgress);
-        transform.position = Vector3.Lerp(pointA.position, pointB.position, smoothedT);
+        //float smoothedT = Mathf.SmoothStep(0f, 1f, _movementProgress);
+        transform.position = Vector3.Lerp(pointA.position, pointB.position, _movementProgress);
     }
 
     private void HandleMagneticPull()
@@ -96,6 +101,7 @@ public class UFOController : MonoBehaviour
             if(playerHealth != null)
             {
                 playerHealth.TakeDamage(3, transform.position); 
+                //playerHealth.health -=3;
             }
         }
     }

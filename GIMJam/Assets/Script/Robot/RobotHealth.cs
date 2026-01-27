@@ -52,9 +52,11 @@ public class RobotHealth : MonoBehaviour
         UpdateUI();
         if (health <= 0) Die();
     }
+    
 
     void UpdateUI()
     {
+        Debug.Log($"Health:{health}");
         if(bar3 != null) bar3.SetActive(health >= 3);
         if(bar2 != null) bar2.SetActive(health >= 2);
         if(bar1 != null) bar1.SetActive(health >= 1);
