@@ -40,6 +40,7 @@ public class EnemyBulletScript : MonoBehaviour
             if(playerHealth != null)
             {
                 playerHealth.TakeDamage(1, transform.position); 
+                //playerHealth.Instance.health -=1;
             }
             Destroy(gameObject);
         }
