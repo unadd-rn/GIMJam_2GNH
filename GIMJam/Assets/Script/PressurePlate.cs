@@ -83,9 +83,11 @@ public class PermanentPressurePlate : MonoBehaviour
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] finalboss = GameObject.FindGameObjectsWithTag("FinalBoss");
 
         foreach (GameObject p in players) ToggleMovement(p, state);
         foreach (GameObject e in enemies) ToggleMovement(e, state);
+        foreach (GameObject n in finalboss) ToggleMovement(n, state);
     }
 
     void ToggleMovement(GameObject obj, bool state)
