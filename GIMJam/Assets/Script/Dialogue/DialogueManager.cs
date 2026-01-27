@@ -220,6 +220,13 @@ public class DialogueManager : MonoBehaviour
 
         if (loadSceneOnExit && !string.IsNullOrEmpty(sceneToLoadAtEnd))
         {
+            string currentSceneName = SceneManager.GetActiveScene().name;
+
+            if (currentSceneName == "Prologue")
+            {
+                PlayerPrefs.SetString("SavedLevel", "Level 1");
+            }
+
             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoadAtEnd);
         }
     }

@@ -36,12 +36,13 @@ public class LevelManager : MonoBehaviour
         UpdateUI();
     }
 
-
     public void AddCoin()
     {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
         coinsCollected++;
         UpdateUI();
-        if (coinsCollected >= totalCoinsInLevel) StartCoroutine(LevelCompleteSequence());
+        if ((coinsCollected >= totalCoinsInLevel) && (currentSceneName != "Prologue")) StartCoroutine(LevelCompleteSequence());
     }
 
     void UpdateUI()
