@@ -5,6 +5,7 @@ public class MainMenu : MonoBehaviour
 {
     public void ContinueGame()
     {
+        Debug.Log("Continue");
         if (!PlayerPrefs.HasKey("SavedLevel"))
         {
             Debug.Log("[MainMenu] no save so new game");
@@ -20,6 +21,7 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame()
     {
+        Debug.Log("NewGame");
         Debug.Log("[MainMenu]new game");
 
         //PlayerPrefs.DeleteAll();
