@@ -8,6 +8,7 @@ TagManager:
   - Control
   - Enemy
   - Coin
+  - FinalBoss
   layers:
   - Default
   - TransparentFX

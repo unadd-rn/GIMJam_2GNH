@@ -16,6 +16,7 @@ public class UFOController : MonoBehaviour
     [SerializeField] private string playerTag = "Player";
 
     [SerializeField] private CinemachineImpulseSource impulseSource;
+    public RobotHealth playerHealth;
 
     private bool _isAbducting = false;
     private float _movementProgress = 0f;
@@ -91,7 +92,11 @@ public class UFOController : MonoBehaviour
         
         if (Vector2.Distance(_playerTransform.position, targetPos) < 0.2f)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if(playerHealth != null)
+            {
+                playerHealth.TakeDamage(3, transform.position); 
+            }
         }
     }
 
