@@ -36,6 +36,7 @@ public class LevelManager : MonoBehaviour
         UpdateUI();
     }
 
+
     public void AddCoin()
     {
         coinsCollected++;
@@ -52,14 +53,18 @@ public class LevelManager : MonoBehaviour
     {
         //ini buat PlayerPref
         string currentSceneName = SceneManager.GetActiveScene().name;
-        if (currentSceneName == "Level 1")
+
+        if (currentSceneName == "Prologue")
+        {
+            PlayerPrefs.SetString("SavedLevel", "Level 1");
+        }else if (currentSceneName == "Level 1")
         {
             PlayerPrefs.SetString("SavedLevel", "Level 2");
         }
-       // else if (currentSceneName == "Level 2")
-        //{
-          //  PlayerPrefs.SetString("SavedLevel", "Level 3");
-        //}ini gw matiin dulu soalnya belum ada
+       else if (currentSceneName == "Level 2")
+        {
+            PlayerPrefs.SetString("SavedLevel", "Level 3");
+        }
 
         PlayerPrefs.Save();
         

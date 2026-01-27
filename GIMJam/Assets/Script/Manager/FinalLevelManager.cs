@@ -60,9 +60,21 @@ public class FinalLevelManager : MonoBehaviour
     {
         // 1. Simpan Progres (PlayerPrefs)
         string currentSceneName = SceneManager.GetActiveScene().name;
-        if (currentSceneName == "Level 1") PlayerPrefs.SetString("SavedLevel", "Level 2");
-        else if (currentSceneName == "Level 2") PlayerPrefs.SetString("SavedLevel", "Level 3");
-        else if (currentSceneName == "Level 3") PlayerPrefs.SetString("SavedLevel", "Level 3");//nnti ganti cutscene akhir
+
+        if (currentSceneName == "Prologue")
+        {
+            PlayerPrefs.SetString("SavedLevel", "Level 1");
+        }else if (currentSceneName == "Level 1")
+        {
+            PlayerPrefs.SetString("SavedLevel", "Level 2");
+        }
+       else if (currentSceneName == "Level 2")
+        {
+            PlayerPrefs.SetString("SavedLevel", "Level 3");
+        }else if (currentSceneName == "Level 3")
+        {
+            PlayerPrefs.SetString("SavedLevel", "Level 3");
+        }//nnti ganti cutscene akhir
         PlayerPrefs.Save();
 
         // 2. Setup Awal: Cari Player & Stop Camera Follow
