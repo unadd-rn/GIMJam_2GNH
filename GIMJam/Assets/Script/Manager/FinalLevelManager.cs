@@ -73,7 +73,7 @@ public class FinalLevelManager : MonoBehaviour
             PlayerPrefs.SetString("SavedLevel", "Level 3");
         }else if (currentSceneName == "Level 3")
         {
-            PlayerPrefs.SetString("SavedLevel", "Level 3");
+            PlayerPrefs.SetString("SavedLevel", "Ending");
         }//nnti ganti cutscene akhir
         PlayerPrefs.Save();
 
