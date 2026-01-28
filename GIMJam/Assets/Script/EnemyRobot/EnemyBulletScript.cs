@@ -2,13 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBulletScript : MonoBehaviour
+public class EnemyBulletScript : MonoBehaviour, IPausable
 {
     private Rigidbody2D rb;
     private float timer;
     public float force;
     public bool ToRight;
     public float DisappearTime;
+
+    private bool _paused;
+
+        public void SetPaused(bool paused)
+        {
+            _paused = paused;
+
+            if (paused)
+            {
+                rb.velocity = Vector2.zero;
+            }
+            else
+            {
+                float direction = ToRight ? 1f : -1f;
+
+                rb.velocity = Vector2.right * direction * force;
+            }
+            
+        } 
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +44,7 @@ public class EnemyBulletScript : MonoBehaviour
 
     void Update() 
     {
+        if(_paused) return;
         timer += Time.deltaTime;
         if(timer>DisappearTime)
         {

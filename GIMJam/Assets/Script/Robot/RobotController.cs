@@ -23,7 +23,7 @@ namespace RobotController
         private Rigidbody2D _activePlatformRb;
 
         // Double jump
-        private int _maxJumps = 1;
+        private int _maxJumps = 0;
         private int _jumpsRemaining;
         private bool _isJumping;
 
