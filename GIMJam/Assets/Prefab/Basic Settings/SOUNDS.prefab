@@ -181,7 +181,7 @@ MonoBehaviour:
   - trackName: Main BG
     clip: {fileID: 8300000, guid: bda89838d0a106e4e9f4cb46e8b9e8b2, type: 3}
   - trackName: Chase BG
-    clip: {fileID: 8300000, guid: b765031fb631d774babc448078b225ad, type: 3}
+    clip: {fileID: 8300000, guid: a74c970c5eadf6c4e841d20c7dcb75c0, type: 3}
 --- !u!114 &7949367297226393680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,7 +208,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb38cf5ea7b386478ad74936d0a9953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundEffects: []
+  soundEffects:
+  - groupID: Door
+    clips:
+    - {fileID: 8300000, guid: 0c31f3c88441a084182064445c0f6e49, type: 3}
+  - groupID: Explode
+    clips:
+    - {fileID: 8300000, guid: 259115ba653fdea43a27b56fcbe1aa9f, type: 3}
+  - groupID: Footstep Player
+    clips:
+    - {fileID: 8300000, guid: b7281b03a95f6474b9aabebbc96b71d4, type: 3}
+  - groupID: Footstep Robot
+    clips:
+    - {fileID: 8300000, guid: 0ecc212f0f598ad40aae6e81f46221eb, type: 3}
+  - groupID: Jump Enji
+    clips:
+    - {fileID: 8300000, guid: 965a2d883409bbf4b96f6f651900991d, type: 3}
+  - groupID: Pressure Plate
+    clips:
+    - {fileID: 8300000, guid: f356e6a5ace85d1498153f0ecb777ea2, type: 3}
+  - groupID: Jump Robot
+    clips:
+    - {fileID: 8300000, guid: ddd88f5af7cf8f147a43e66150432dc1, type: 3}
+  - groupID: Shoot Robot
+    clips:
+    - {fileID: 8300000, guid: 6cb53ae9a0ddcdc46a9cd6f37f14196b, type: 3}
+  - groupID: Hit Robot
+    clips:
+    - {fileID: 8300000, guid: 3d88ba96e95ed94439daec3bdfaaaafb, type: 3}
+  - groupID: Hit UFO
+    clips:
+    - {fileID: 8300000, guid: 682ddb15253d2004f95345335043c627, type: 3}
+  - groupID: Button Robot
+    clips:
+    - {fileID: 8300000, guid: e58e01ded516c904c9851a1d71b04828, type: 3}
+  - groupID: Button Menu
+    clips:
+    - {fileID: 8300000, guid: 8f900fec0f50b6f4d920dfd635ca24d5, type: 3}
 --- !u!114 &5909262493677794101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxLibrary: {fileID: 1045242762622629259}
   sfx2DSource: {fileID: 9145563569415055575}
-  audioMixer: {fileID: 24100000, guid: 508ae7c639975c946a2db365a607d651, type: 2}
+  audioMixer: {fileID: 24100000, guid: ffe9429043d132646b4b5a18126e9618, type: 2}
 --- !u!1 &7612845921759978650
 GameObject:
   m_ObjectHideFlags: 0
