@@ -3,9 +3,8 @@ How is the robot? #speaker:ENJI #portrait:enji_neutral #layout:left #audio:enji_
 
 Everything is supposed to be in place, but this freaking dipshit still won’t fly. #speaker:NIYA #portrait:niya_neutral #layout:left #audio:niya_audio
 
-#speaker: Enji
 Maybe we have to wait a while. #speaker:ENJI #portrait:enji_neutral #layout:left #audio:enji_audio
 
-ZIP ZIP!!! #speaker: Vorp
+ZIP ZIP!!! #speaker: ???
 
-UFO?! #speaker: Enji & Niya
+UFO?! #speaker: ENJI & NIYA #portrait:empty
