@@ -22,6 +22,9 @@ public class LevelManager : MonoBehaviour
     private CinemachineTransposer transposer;
     private CinemachineConfiner2D confiner;
 
+    [SerializeField] Animator transitionAnim;
+
+
     void Awake()
     {
         instance = this;
@@ -110,8 +113,12 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 1f;
 
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings){
+            transitionAnim.SetTrigger("End");
+            yield return new WaitForSeconds(0.45f);
             SceneManager.LoadScene(nextSceneIndex);
+            transitionAnim.SetTrigger("Start");
+        }
         else
             SceneManager.LoadScene(0);
     }
