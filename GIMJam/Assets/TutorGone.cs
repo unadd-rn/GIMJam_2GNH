@@ -8,7 +8,9 @@ public class TutorGone : MonoBehaviour
 
     [Header("Settings")]
     public float fadeSpeed = 10.0f;
+    
     public string playerTag = "Player";
+    public string controlTag = "Control";
 
     private bool lastDialogueState = false;
     private bool isFadingIn = false;
@@ -46,10 +48,11 @@ public class TutorGone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Something entered the trigger: " + other.name); // ADD THIS LINE
-        if (other.CompareTag(playerTag))
+        Debug.Log("Something entered the trigger: " + other.name);
+        
+        if (other.CompareTag(playerTag) || other.CompareTag(controlTag))
         {
-            Debug.Log("Player detected! Hiding canvas."); // ADD THIS LINE
+            Debug.Log("Authorized object detected: " + other.tag + ". Hiding canvas.");
             isFadingIn = false;
             if (canvasToFade != null)
             {
