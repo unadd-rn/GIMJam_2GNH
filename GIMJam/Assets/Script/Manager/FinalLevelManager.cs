@@ -79,7 +79,7 @@ public class FinalLevelManager : MonoBehaviour
 
         // 2. Setup Awal: Cari Player & Stop Camera Follow
         Rigidbody2D rb = robot.GetComponent<Rigidbody2D>();
-        vcam.Follow = null; 
+        // vcam.Follow = null; 
         
         FreezeObjectsByTag("Enemy"); 
         FreezeObjectsByTag("FinalBoss"); 
@@ -109,22 +109,27 @@ public class FinalLevelManager : MonoBehaviour
             robot.transform.position = Vector3.Lerp(playerStartPos, playerTargetPos, tFly);
 
             // Logic Zoom Paralel
-            if (elapsedFly >= startZoomAt)
-            {
-                elapsedZoom += Time.unscaledDeltaTime;
-                float tZoom = Mathf.Clamp01(elapsedZoom / zoomDuration);
-                float smoothT = tZoom * tZoom * (3f - 2f * tZoom); 
-                vcam.m_Lens.OrthographicSize = Mathf.Lerp(startSize, targetOrthoSize, smoothT);
-            }
+            // if (elapsedFly >= startZoomAt)
+            // {
+            //     elapsedZoom += Time.unscaledDeltaTime;
+            //     float tZoom = Mathf.Clamp01(elapsedZoom / zoomDuration);
+            //     float smoothT = tZoom * tZoom * (3f - 2f * tZoom); 
+            //     vcam.m_Lens.OrthographicSize = Mathf.Lerp(startSize, targetOrthoSize, smoothT);
+            // }
 
             yield return null;
         }
-        
-        yield return new WaitForSecondsRealtime(1f);
+
+        robot.gameObject.SetActive(false);
 
         // 5. Reset & Pindah Scene
         Time.timeScale = 1f;
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+
+        GameObject.Find("Scene Transition").GetComponent<Animator>().SetTrigger("End");
+
+        yield return new WaitForSecondsRealtime(1.5f);
+
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
             SceneManager.LoadScene(nextSceneIndex);
         else
