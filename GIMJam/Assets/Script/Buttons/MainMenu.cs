@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class MainMenu : MonoBehaviour
 {
@@ -16,7 +17,8 @@ public class MainMenu : MonoBehaviour
         string levelName = PlayerPrefs.GetString("SavedLevel");
         Debug.Log($"[MainMenu] continye {levelName}");
 
-        SceneManager.LoadScene(levelName);
+        // wait for 1.5f second before load scene
+        StartCoroutine(LoadLevelAfterDelay(levelName, 1.5f));
     }
 
     public void NewGame()
@@ -24,10 +26,17 @@ public class MainMenu : MonoBehaviour
         Debug.Log("NewGame");
         Debug.Log("[MainMenu]new game");
 
-        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
         //ini aku ganti sama yang bawah soalnya dia bakal reset setting sound juga
-        PlayerPrefs.DeleteKey("SavedLevel");
-        SceneManager.LoadScene("Prologue");
+        // PlayerPrefs.DeleteKey("SavedLevel");
+
+        StartCoroutine(LoadLevelAfterDelay("Prologue", 1.5f));
+    }
+
+    IEnumerator LoadLevelAfterDelay(string levelName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(levelName);
     }
 
     public void QuitGame()

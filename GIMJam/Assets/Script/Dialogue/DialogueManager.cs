@@ -227,6 +227,10 @@ public class DialogueManager : MonoBehaviour
                 PlayerPrefs.SetString("SavedLevel", "Level 1");
             }
 
+            GameObject.Find("Scene Transition").GetComponent<Animator>().SetTrigger("End");
+
+            yield return new WaitForSeconds(1.5f);
+
             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoadAtEnd);
         }
 

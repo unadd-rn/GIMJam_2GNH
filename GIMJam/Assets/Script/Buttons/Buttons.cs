@@ -1,5 +1,6 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using System.Collections;
 
 public class Buttons : MonoBehaviour
 {
@@ -14,13 +15,13 @@ public class Buttons : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isPaused)
-                Resume();
-            else
-                Pause();
-        }
+        // if (Input.GetKeyDown(KeyCode.Escape))
+        // {
+        //     if (isPaused)
+        //         Resume();
+        //     else
+        //         Pause();
+        // }
     }
 
     public void Pause()
@@ -50,13 +51,23 @@ public class Buttons : MonoBehaviour
         Debug.Log("[PauseMenu] Back to main menu");
 
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        GameObject.Find("Scene Transition").GetComponent<Animator>().SetTrigger("End");
+
+        StartCoroutine(LoadAfterDelay("MainMenu", 1.5f));
     }
 
     public void Respawan()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
+        string currentScene = SceneManager.GetActiveScene().name;
         Time.timeScale = 1f;
-        SceneManager.LoadScene(currentScene.name);
+        GameObject.Find("Scene Transition").GetComponent<Animator>().SetTrigger("End");
+        StartCoroutine(LoadAfterDelay(currentScene, 1.5f));
+
+    }
+
+    IEnumerator LoadAfterDelay(string sceneName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(sceneName);
     }
 }

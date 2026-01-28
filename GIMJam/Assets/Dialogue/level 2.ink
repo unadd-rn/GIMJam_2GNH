@@ -1,9 +1,9 @@
 So tiresome… #speaker:NIYA #portrait:niya_lazy #layout:left #audio:niya_audio
 
 We finally managed to gather some of the parts. #speaker:ENJI #portrait:enji_neutral #layout:left #audio:enji_audio
-Niya! Help me put this back on!
+Niya! Help me put this back on! #speaker:ENJI #portrait:enji_panick #layout:left #audio:enji_audio
  
-clank clank clank #layout:right
+clank clank clank #layout:left
 
 
 Enji! This robot is still missing two parts! #speaker:NIYA #portrait:niya_annoyed #layout:left #audio:niya_audio
