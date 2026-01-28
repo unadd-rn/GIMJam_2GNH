@@ -77,6 +77,8 @@ public class LevelManager : MonoBehaviour
         FreezeObjectsByTag("Player");
         FreezeObjectsByTag("Enemy");
 
+        PauseManager.ToggleEntities(false);
+
         if (confiner != null) confiner.enabled = false; 
 
         Time.timeScale = 0.5f; 
