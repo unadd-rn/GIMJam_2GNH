@@ -2,23 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyShooting : MonoBehaviour
+public class EnemyShooting : MonoBehaviour, IPausable
 {
     public GameObject bullet;
     public Transform bulletPos;
     public float shootEvery;
+
+    public float floatAmplitude = 0.2f;
+    public float floatFrequency = 1.5f;
+
     private float timer;
     private Vector3 startPos;
-    public float floatAmplitude = 0.2f; //bob height
-    public float floatFrequency = 1.5f;
+    private bool _paused;
+    private Animator _anim;
 
     void Start()
     {
-        GetComponent<Animator>().Play("idle");
-        startPos=transform.position;
+        _anim = GetComponent<Animator>();
+        _anim.Play("idle");
+        startPos = transform.position;
     }
+
     void Update()
     {
+        if (_paused) return; 
+
         timer += Time.deltaTime;
 
         float newY = Mathf.Sin(Time.time * floatFrequency) * floatAmplitude;
@@ -27,12 +35,21 @@ public class EnemyShooting : MonoBehaviour
         if (timer > shootEvery)
         {
             timer = 0;
-            shoot();
+            Shoot();
         }
     }
 
-    void shoot()
+    void Shoot()
     {
+        if (_paused) return; 
         Instantiate(bullet, bulletPos.position, Quaternion.identity);
+    }
+
+    public void SetPaused(bool paused)
+    {
+        _paused = paused;
+
+        if (_anim != null)
+            _anim.speed = paused ? 0f : 1f;   //  freeze animation
     }
 }

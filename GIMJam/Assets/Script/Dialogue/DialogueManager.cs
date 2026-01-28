@@ -476,7 +476,11 @@ public class DialogueManager : MonoBehaviour
         // for at least one frame before we set the current selected object.
         EventSystem.current.SetSelectedGameObject(null);
         yield return new WaitForEndOfFrame();
-        EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
+        // check if exist so not out of bound
+        if (choices.Length > 0)
+        {
+            EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
+        }
     }
 
 

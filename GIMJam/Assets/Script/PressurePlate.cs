@@ -46,7 +46,15 @@ public class PermanentPressurePlate : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    // private void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     if (!isActivated && collision.gameObject.CompareTag("Player"))
+    //     {
+    //         StartCoroutine(CameraPanSequence());
+    //     }
+    // }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!isActivated && collision.gameObject.CompareTag("Player"))
         {
@@ -81,13 +89,21 @@ public class PermanentPressurePlate : MonoBehaviour
 
     void ToggleEntities(bool state)
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        GameObject[] finalboss = GameObject.FindGameObjectsWithTag("FinalBoss");
+        foreach (var p in FindObjectsOfType<MonoBehaviour>())
+        {
+            if (p is IPausable pausable)
+            {
+                pausable.SetPaused(!state);
+            }
+        }
 
-        foreach (GameObject p in players) ToggleMovement(p, state);
-        foreach (GameObject e in enemies) ToggleMovement(e, state);
-        foreach (GameObject n in finalboss) ToggleMovement(n, state);
+        // GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        // GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        // GameObject[] finalboss = GameObject.FindGameObjectsWithTag("FinalBoss");
+
+        // foreach (GameObject p in players) ToggleMovement(p, state);
+        // foreach (GameObject e in enemies) ToggleMovement(e, state);
+        // foreach (GameObject n in finalboss) ToggleMovement(n, state);
     }
 
     void ToggleMovement(GameObject obj, bool state)

@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 233474955141544391}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.34, y: -0.29, z: 0}
+  m_LocalPosition: {x: -0.329, y: -0.318, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 5674415197707300297}
   - component: {fileID: 4621464181514949979}
   - component: {fileID: 2442050882497743384}
-  - component: {fileID: 1780585083413438776}
+  - component: {fileID: 7664209991815756821}
   m_Layer: 0
   m_Name: EnemyShoot
   m_TagString: Enemy
@@ -305,7 +305,7 @@ MonoBehaviour:
   bullet: {fileID: 126167401268997267, guid: ee613bb2b502ee54393ee502085ef59c, type: 3}
   bulletPos: {fileID: 2902968728659199883}
   shootEvery: 4
-  floatAmplitude: 0.2
+  floatAmplitude: 0.1
   floatFrequency: 1.5
 --- !u!95 &5674415197707300297
 Animator:
@@ -360,8 +360,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: 71a8ef9f121eefb42b92a12605b3e546, type: 2}
   flashDuration: 0.1
---- !u!70 &1780585083413438776
-CapsuleCollider2D:
+--- !u!60 &7664209991815756821
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -393,8 +393,24 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 0.5}
-  m_Direction: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.28, y: 1.28}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.56887245, y: -0.11003041}
+      - {x: 0.16417244, y: 0.23312742}
+      - {x: -0.16413704, y: 0.23726445}
+      - {x: -0.5862204, y: -0.122702286}
+      - {x: -0.40834105, y: -0.49517918}
+      - {x: 0.26048425, y: -0.49794823}
+  m_UseDelaunayMesh: 0
 --- !u!1 &7357679323102304034
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,8 +436,8 @@ Transform:
   m_GameObject: {fileID: 7357679323102304034}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 0.61, z: 10}
-  m_LocalScale: {x: 0.5, y: 1, z: 1}
+  m_LocalPosition: {x: 0.02, y: 0.61, z: 11.344}
+  m_LocalScale: {x: 0.5672, y: 0.930208, z: 1.1344}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4916318896514165}
