@@ -229,6 +229,8 @@ public class DialogueManager : MonoBehaviour
 
             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoadAtEnd);
         }
+
+        PauseManager.ToggleEntities(true);
     }
 
 

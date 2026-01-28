@@ -69,7 +69,7 @@ public class PermanentPressurePlate : MonoBehaviour
         if (pressedSprite != null) sr.sprite = pressedSprite;
         col.size = new Vector2(col.size.x, col.size.y * colliderShrinkRatio);
 
-        ToggleEntities(false);
+        PauseManager.ToggleEntities(false);
 
         Transform originalTarget = playerVCam.Follow;
         playerVCam.Follow = door.transform; 
@@ -84,45 +84,37 @@ public class PermanentPressurePlate : MonoBehaviour
         playerVCam.Follow = originalTarget;
         yield return new WaitForSeconds(1.0f);
 
-        ToggleEntities(true);
+        PauseManager.ToggleEntities(true);
     }
 
-    void ToggleEntities(bool state)
-    {
-        foreach (var p in FindObjectsOfType<MonoBehaviour>())
-        {
-            if (p is IPausable pausable)
-            {
-                pausable.SetPaused(!state);
-            }
-        }
+    // void ToggleEntities(bool state)
+    // {
+    //     GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+    //     GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+    //     GameObject[] finalboss = GameObject.FindGameObjectsWithTag("FinalBoss");
 
-        // GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        // GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        // GameObject[] finalboss = GameObject.FindGameObjectsWithTag("FinalBoss");
+    //     foreach (GameObject p in players) ToggleMovement(p, state);
+    //     foreach (GameObject e in enemies) ToggleMovement(e, state);
+    //     foreach (GameObject n in finalboss) ToggleMovement(n, state);
+    // }
 
-        // foreach (GameObject p in players) ToggleMovement(p, state);
-        // foreach (GameObject e in enemies) ToggleMovement(e, state);
-        // foreach (GameObject n in finalboss) ToggleMovement(n, state);
-    }
+    // void ToggleMovement(GameObject obj, bool state)
+    // {
+    //     Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+    //     if (rb != null)
+    //     {
+    //         if (!state) rb.velocity = Vector2.zero; 
+    //         rb.simulated = state; 
+    //     }
 
-    void ToggleMovement(GameObject obj, bool state)
-    {
-        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
-        if (rb != null)
-        {
-            if (!state) rb.velocity = Vector2.zero; 
-            rb.simulated = state; 
-        }
+    //     Animator anim = obj.GetComponent<Animator>();
+    //     if (anim != null) anim.enabled = state;
 
-        Animator anim = obj.GetComponent<Animator>();
-        if (anim != null) anim.enabled = state;
-
-        MonoBehaviour[] scripts = obj.GetComponents<MonoBehaviour>();
-        foreach (MonoBehaviour script in scripts)
-        {
-            if (script != this && !(script is CinemachineVirtualCamera)) 
-                script.enabled = state;
-        }
-    }
+    //     MonoBehaviour[] scripts = obj.GetComponents<MonoBehaviour>();
+    //     foreach (MonoBehaviour script in scripts)
+    //     {
+    //         if (script != this && !(script is CinemachineVirtualCamera)) 
+    //             script.enabled = state;
+    //     }
+    // }
 }
