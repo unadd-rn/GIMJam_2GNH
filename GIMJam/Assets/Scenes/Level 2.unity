@@ -44164,6 +44164,10 @@ PrefabInstance:
       propertyPath: inkJSON
       value: 
       objectReference: {fileID: 4900000, guid: 04bbab2769f47564c8c595a4577b7f27, type: 3}
+    - target: {fileID: 2550569253760796930, guid: 07bc3cf3ecaab2e46a56438b5e565193, type: 3}
+      propertyPath: triggerID
+      value: level2
+      objectReference: {fileID: 0}
     - target: {fileID: 3486013867655170479, guid: 07bc3cf3ecaab2e46a56438b5e565193, type: 3}
       propertyPath: continueIcon
       value: 
