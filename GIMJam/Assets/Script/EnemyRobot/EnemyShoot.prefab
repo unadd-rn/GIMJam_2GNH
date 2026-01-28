@@ -345,7 +345,7 @@ MonoBehaviour:
   bar1: {fileID: 8310404100728480911}
   bar2: {fileID: 498867582424893357}
   bar3: {fileID: 1171389132650266856}
-  _deathEffectPrefab: {fileID: 0}
+  _deathEffectPrefab: {fileID: 6758949694568690334, guid: 06bb1b763c67abf4d938563a042afedd, type: 3}
 --- !u!114 &2442050882497743384
 MonoBehaviour:
   m_ObjectHideFlags: 0

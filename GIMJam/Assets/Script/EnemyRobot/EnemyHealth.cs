@@ -6,6 +6,7 @@ public class EnemyHealth : MonoBehaviour
     public GameObject healthbar;
     public GameObject bar1, bar2, bar3;
     [SerializeField] private GameObject _deathEffectPrefab; //death particle?
+    
     public void TakeDamage(float damage)
     {
         health -= damage;
