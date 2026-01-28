@@ -173,7 +173,7 @@ namespace RobotController
             {
                 StopAllCoroutines(); // 🔥 HARD STOP
 
-                _rb.velocity = Vector2.zero;
+                _rb.velocity = new Vector2(0, _rb.velocity.y);
                 _frameVelocity = Vector2.zero;
 
                 ExternalMoveX = 0;

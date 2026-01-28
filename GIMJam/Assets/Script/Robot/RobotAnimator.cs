@@ -32,7 +32,16 @@ namespace RobotController
         public void SetPaused(bool paused)
         {
             _paused = paused;
-            _anim.speed = paused ? 0f : 1f;
+            if (paused)
+            {
+                _anim.SetBool(WalkingKey, false);
+                _anim.SetBool(GroundedKey, true);
+                _anim.speed = 0f;
+            }
+            else
+            {
+                _anim.speed = 1f;
+            }
         }
 
         private void Awake()
@@ -71,19 +80,12 @@ namespace RobotController
             _anim.transform.localScale = Vector3.Lerp(_anim.transform.localScale, Vector3.one, Time.deltaTime * 10f);
 
             HandleWalkingState();
-            HandleCharacterTilt();
         }
 
         private void HandleWalkingState()
         {
             bool isWalking = Mathf.Abs(_player.FrameInput.x) > 0.01f;
             _anim.SetBool(WalkingKey, isWalking);
-        }
-
-        private void HandleCharacterTilt()
-        {
-            var targetZ = _grounded ? -_player.FrameInput.x * _maxTilt : 0;
-            _anim.transform.localRotation = Quaternion.RotateTowards(_anim.transform.localRotation, Quaternion.Euler(0, 0, targetZ), _tiltSpeed * 10 * Time.deltaTime);
         }
 
         private void OnJumped()
