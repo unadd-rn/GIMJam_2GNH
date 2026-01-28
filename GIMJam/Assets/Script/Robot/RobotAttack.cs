@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace RobotController
 {
-    public class RobotAttack : MonoBehaviour
+    public class RobotAttack : MonoBehaviour, IPausable
     {
         [Header("References")]
         [SerializeField] private RobotController _controller;
@@ -14,6 +14,18 @@ namespace RobotController
         private float _nextFireTime;
         private Animator _anim;
         private Coroutine _attackRoutine;
+        private bool _paused;
+
+        public void SetPaused(bool paused)
+        {
+            _paused = paused;
+
+            if (paused && _attackRoutine != null)
+            {
+                StopCoroutine(_attackRoutine);
+                _attackRoutine = null;
+            }
+        } 
 
         void Awake() 
         {
@@ -22,15 +34,14 @@ namespace RobotController
 
         void Update()
         {
+            if (_paused) return;
             if (_controller == null) return;
 
             if (_controller.ExternalAttackDown)
             {
                 if (Time.time >= _nextFireTime)
-                {
                     TriggerAttack();
-                }
-                
+
                 _controller.ExternalAttackDown = false;
             }
         }
@@ -61,6 +72,7 @@ namespace RobotController
 
         public void Shoot()
         {
+            if (_paused) return;
             if (_bulletPrefab == null || _firePoint == null) return;
 
             GameObject bullet = Instantiate(_bulletPrefab, _firePoint.position, Quaternion.identity);
