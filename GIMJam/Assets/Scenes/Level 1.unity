@@ -41773,11 +41773,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6798933495347036385, guid: df8eb9168b5a5784e9b5f7fa4b620a6d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.94
+      value: 9.32
       objectReference: {fileID: 0}
     - target: {fileID: 6798933495347036385, guid: df8eb9168b5a5784e9b5f7fa4b620a6d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.94
+      value: 2.77
       objectReference: {fileID: 0}
     - target: {fileID: 6798933495347036385, guid: df8eb9168b5a5784e9b5f7fa4b620a6d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -41828,6 +41828,10 @@ PrefabInstance:
       propertyPath: inkJSON
       value: 
       objectReference: {fileID: 4900000, guid: 218b33ccea2306346b3e0e697f1c3ef3, type: 3}
+    - target: {fileID: 2550569253760796930, guid: 07bc3cf3ecaab2e46a56438b5e565193, type: 3}
+      propertyPath: triggerID
+      value: level1
+      objectReference: {fileID: 0}
     - target: {fileID: 3486013867655170479, guid: 07bc3cf3ecaab2e46a56438b5e565193, type: 3}
       propertyPath: continueIcon
       value: 
