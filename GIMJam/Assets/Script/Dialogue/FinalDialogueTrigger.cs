@@ -17,8 +17,11 @@ public class FinalDialogueTrigger : MonoBehaviour
 
     private IEnumerator WaitToStart() 
     {
+        PauseManager.ToggleEntities(false);
         // Wait until the very end of the first frame
         yield return new WaitForEndOfFrame();
         DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+
+        GameObject.Destroy(this.gameObject);
     }
 }

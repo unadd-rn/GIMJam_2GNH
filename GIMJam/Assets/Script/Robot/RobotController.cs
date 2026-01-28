@@ -5,7 +5,7 @@ using Cinemachine;
 namespace RobotController
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
-    public class RobotController : MonoBehaviour, IPlayerController
+    public class RobotController : MonoBehaviour, IPlayerController, IPausable
     {
         [SerializeField] private ScriptableStatsRobot _stats;
         [SerializeField] private Transform _visuals;
@@ -50,6 +50,7 @@ namespace RobotController
 
         private void Update()
         {
+            if (_paused) return;
             _time += Time.deltaTime;
             GatherInput();
         }
@@ -81,6 +82,7 @@ namespace RobotController
 
         private void FixedUpdate()
         {
+            if (_paused) return;
             CheckCollisions();
 
             HandleJump();
@@ -162,6 +164,25 @@ namespace RobotController
 
         private bool HasBufferedJump => _bufferedJumpUsable && _time < _timeJumpWasPressed + _stats.JumpBuffer;
         private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGrounded + _stats.CoyoteTime;
+        private bool _paused;
+        public void SetPaused(bool paused)
+        {
+            _paused = paused;
+
+            if (paused)
+            {
+                StopAllCoroutines(); // 🔥 HARD STOP
+
+                _rb.velocity = Vector2.zero;
+                _frameVelocity = Vector2.zero;
+
+                ExternalMoveX = 0;
+                ExternalJumpDown = false;
+                ExternalJumpHeld = false;
+                ExternalAttackDown = false;
+            }
+        }
+
 
         private void HandleJump()
         {

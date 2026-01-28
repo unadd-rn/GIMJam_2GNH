@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
 
-public class UFOController : MonoBehaviour
+public class UFOController : MonoBehaviour, IPausable
 {
     [Header("Movement Settings (Seconds)")]
     [SerializeField] private Transform pointA;
@@ -21,6 +21,8 @@ public class UFOController : MonoBehaviour
     private bool _isAbducting = false;
     private float _movementProgress = 0f;
     private bool _movingToB = true;
+
+    private bool _paused;
     
     private Transform _playerTransform;
     private RobotController.RobotController _playerScript;
@@ -28,6 +30,7 @@ public class UFOController : MonoBehaviour
 
     private void Update()
     {
+        if (_paused) return; 
         if (!_isAbducting)
         {
             if (!DialogueManager.GetInstance().dialogueIsPlaying)
@@ -42,6 +45,16 @@ public class UFOController : MonoBehaviour
         }
 
         
+    }
+
+    public void SetPaused(bool paused)
+    {
+        _paused = paused;
+
+        if (paused && _playerRb != null)
+        {
+            _playerRb.velocity = Vector2.zero;
+        }
     }
 
     private void MoveUFO()

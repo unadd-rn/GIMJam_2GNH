@@ -3,7 +3,7 @@ using Cinemachine;
 
 namespace RobotController
 {
-    public class PlayerAnimator : MonoBehaviour
+    public class PlayerAnimator : MonoBehaviour, IPausable
     {
         [Header("References")]
         [SerializeField] private Animator _anim;
@@ -26,6 +26,14 @@ namespace RobotController
         private bool _grounded;
         private ParticleSystem.MinMaxGradient _currentGradient;
         private CinemachineImpulseSource _impulseSource;
+
+        private bool _paused;
+
+        public void SetPaused(bool paused)
+        {
+            _paused = paused;
+            _anim.speed = paused ? 0f : 1f;
+        }
 
         private void Awake()
         {
@@ -57,6 +65,7 @@ namespace RobotController
 
         private void Update()
         {
+            if (_paused) return;
             if (_player == null) return;
 
             _anim.transform.localScale = Vector3.Lerp(_anim.transform.localScale, Vector3.one, Time.deltaTime * 10f);
