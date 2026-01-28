@@ -290,6 +290,7 @@ GameObject:
   - component: {fileID: 6946388428013896783}
   - component: {fileID: 3135451750156028889}
   - component: {fileID: 8567066584321536580}
+  - component: {fileID: 7639820935908262517}
   m_Layer: 12
   m_Name: DeathUI
   m_TagString: Untagged
@@ -340,14 +341,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2bae8758632cb544b9bbae6eb7351101, type: 3}
+  m_Sprite: {fileID: 1690467705, guid: 9b3014e57f1aa704b898666f2a6407a4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -357,6 +358,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &7639820935908262517
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238274901413666205}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 89fa7830aaee4a5429378b21411c83dc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1272075253474858999
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,7 +1303,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -462.77, y: -310.76}
+  m_AnchoredPosition: {x: -472.96, y: -367.12}
   m_SizeDelta: {x: 509.452, y: 154.655}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2919110981342597476

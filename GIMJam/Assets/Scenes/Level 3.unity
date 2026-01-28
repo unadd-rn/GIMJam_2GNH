@@ -7541,21 +7541,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1736182588623188486, guid: c7fee19a59eedb140b1c7bc23f6f94c7, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 3357835292460605190, guid: c7fee19a59eedb140b1c7bc23f6f94c7, type: 3}
-      propertyPath: m_CullTransparentMesh
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4141075531644724999, guid: c7fee19a59eedb140b1c7bc23f6f94c7, type: 3}
       propertyPath: m_Name
       value: post process
-      objectReference: {fileID: 0}
-    - target: {fileID: 4141075531644724999, guid: c7fee19a59eedb140b1c7bc23f6f94c7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9195451319386319031, guid: c7fee19a59eedb140b1c7bc23f6f94c7, type: 3}
       propertyPath: m_Pivot.x
