@@ -19,6 +19,7 @@ public class RobotHealth : MonoBehaviour
         if(DeathUI != null) DeathUI.SetActive(false);
         health = 3;
         UpdateUI();
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -35,6 +36,7 @@ public class RobotHealth : MonoBehaviour
 
     public void TakeDamage(float amount, Vector2 hazardPosition)
     {
+        
         health -= amount;
 
         OnRobotHit?.Invoke();
@@ -47,26 +49,57 @@ public class RobotHealth : MonoBehaviour
             float direction = transform.position.x > hazardPosition.x ? 1 : -1;
             Vector2 knockbackForce = new Vector2(direction * 5f, 3f); // 5 horizontal, 3 vertical
             controller.ApplyKnockback(knockbackForce);
+        }  
+
+        UpdateUI();      
+
+        if (health <= 0) 
+        {
+            Die();
+            return;
         }
 
-        UpdateUI();
-        if (health <= 0) Die();
     }
     
 
     void UpdateUI()
     {
         Debug.Log($"Health:{health}");
-        if(bar3 != null) bar3.SetActive(health >= 3);
-        if(bar2 != null) bar2.SetActive(health >= 2);
-        if(bar1 != null) bar1.SetActive(health >= 1);
+        if (health == 3)
+        {
+            bar1.SetActive(true);
+            bar2.SetActive(true);
+            bar3.SetActive(true);
+        }
+        else if (health == 2)
+        {
+            bar1.SetActive(true);
+            bar2.SetActive(true);
+            bar3.SetActive(false);
+        }
+        else if (health == 1)
+        {
+            bar1.SetActive(true);
+            bar2.SetActive(false);
+            bar3.SetActive(false);
+        }
+        else if (health <= 0)
+        {
+            bar1.SetActive(false);
+            bar2.SetActive(false);
+            bar3.SetActive(false);
+        }
     }
 
     private void Die()
     {
+         bar1.SetActive(false);
+        bar2.SetActive(false);
+        bar3.SetActive(false);
         Debug.Log("Robot Destroyed!");
         // ? like death stuff
-        Time.timeScale = 0f;
+        PauseManager.ToggleEntities(false);
+        // Time.timeScale = 0f;
         if(DeathUI != null) DeathUI.SetActive(true);
     }
 }

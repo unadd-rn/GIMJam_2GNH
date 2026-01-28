@@ -2,11 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBulletScript : MonoBehaviour
+public class PlayerBulletScript : MonoBehaviour, IPausable
 {
     private Rigidbody2D rb;
     public float force;
     public bool ToRight;
+
+    private bool _paused;
+
+    public void SetPaused(bool paused)
+    {
+        _paused = paused;
+
+        if (paused)
+        {
+            rb.velocity = Vector2.zero;
+        }
+        else
+        {
+            float direction = ToRight ? 1f : -1f;
+
+            rb.velocity = Vector2.right * direction * force;
+        }
+    } 
 
     void Start()
     {

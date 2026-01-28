@@ -23,7 +23,7 @@ namespace RobotController
         private Rigidbody2D _activePlatformRb;
 
         // Double jump
-        private int _maxJumps = 1;
+        private int _maxJumps = 0;
         private int _jumpsRemaining;
         private bool _isJumping;
 
@@ -173,7 +173,7 @@ namespace RobotController
             {
                 StopAllCoroutines(); // 🔥 HARD STOP
 
-                _rb.velocity = Vector2.zero;
+                _rb.velocity = new Vector2(0, _rb.velocity.y);
                 _frameVelocity = Vector2.zero;
 
                 ExternalMoveX = 0;

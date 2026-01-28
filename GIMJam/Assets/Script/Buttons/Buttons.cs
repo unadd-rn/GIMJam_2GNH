@@ -56,6 +56,7 @@ public class Buttons : MonoBehaviour
     public void Respawan()
     {
         Scene currentScene = SceneManager.GetActiveScene();
+        Time.timeScale = 1f;
         SceneManager.LoadScene(currentScene.name);
     }
 }

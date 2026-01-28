@@ -24,6 +24,8 @@ namespace RobotController
             {
                 StopCoroutine(_attackRoutine);
                 _attackRoutine = null;
+                int layerIndex = _anim.GetLayerIndex("Attack");
+                _anim.SetLayerWeight(layerIndex, 0f);
             }
         } 
 
