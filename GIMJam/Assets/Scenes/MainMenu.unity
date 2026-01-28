@@ -206,6 +206,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3676757130459641821, guid: a5ee93fa1d55c1d4488ca1654f522c43, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584837887844846447, guid: a5ee93fa1d55c1d4488ca1654f522c43, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.00036621094
+      objectReference: {fileID: 0}
     - target: {fileID: 9092725208716408446, guid: a5ee93fa1d55c1d4488ca1654f522c43, type: 3}
       propertyPath: m_Name
       value: Scene Transition
@@ -3806,8 +3814,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00048828125, y: 0}
-  m_SizeDelta: {x: 213.35, y: 155}
+  m_AnchoredPosition: {x: -0.2999878, y: -3.0299988}
+  m_SizeDelta: {x: 151.16998, y: 5.380005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1685476537
 MonoBehaviour:
