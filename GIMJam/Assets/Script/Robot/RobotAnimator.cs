@@ -111,7 +111,7 @@ namespace RobotController
             if (grounded)
             {
                 DetectGroundColor();
-                _source.PlayOneShot(_footsteps[UnityEngine.Random.Range(0, _footsteps.Length)]);
+                // _source.PlayOneShot(_footsteps[UnityEngine.Random.Range(0, _footsteps.Length)]);
                 _moveParticles.Play();
                 _landParticles.Play();
             }
