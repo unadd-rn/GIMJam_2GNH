@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     public static SceneController Instance;
+    [SerializeField] Animator transitionAnim;
 
     void Awake()
     {
         if (Instance != null && Instance != this) Destroy(gameObject);
         Instance = this;
+        
     }
     public void QuitGame()
     {
@@ -18,8 +20,15 @@ public class SceneController : MonoBehaviour
 
     public void goToSceneName(string name)
     {
+        StartCoroutine(LoadLevel());
+    }
 
+    IEnumerator LoadLevel()
+    {
+        transitionAnim.SetTrigger("End");
+        yield return new WaitForSeconds(0.45f);
         SceneManager.LoadSceneAsync(name);
+        transitionAnim.SetTrigger("Start");
     }
 }
 
