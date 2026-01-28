@@ -1044,10 +1044,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "[Game Production]\n\n\n[Game Design] \n[Programming]\n\n[Game Design]\n\n\n\n[Game
-    Design]\n\n\n\r[Writer]\n[Programming]\n[Visual Art]\n\n[Writer]\n\n\n\n[Audio
-    Art]\n\n\n[Audio Art]\n\n\n[Visual Art]\n\n\n\n[Visual Art]\n\n\n\n[Visual Art]\n\n\n\n[Visual
-    Art]\n\n\n\n[Programmer]\n\n\n[Programmer]"
+  m_text: "[Game Production]\n\n\n[Game Design] \n[Programming]\n\n\n\n[Game Design]\n\n\n\n[Game
+    Design]\n\n\n\n\r[Writer]\n[Programming]\n[Visual Art]\n\n\n\n\n[Writer]\n\n\n\n[Audio
+    Art]\n\n\n\n[Audio Art]\n\n\n\n[Visual Art]\n\n\n\n[Visual Art]\n\n\n\n[Visual
+    Art]\n\n\n\n[Visual Art]\n\n\n\n[Programmer]\n\n\n\n[Programmer]"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ec17ebd1d1bae374bbdccfa0f0c8376b, type: 2}
   m_sharedMaterial: {fileID: -3911775888064347380, guid: ec17ebd1d1bae374bbdccfa0f0c8376b, type: 2}
@@ -1479,9 +1479,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "098\nJinda Aqila Zain\n\n085\nGavin Malik Setiawan\n\n149\nMuhammad Gibran
-    Al Ghifari \n\r\n147\nMuhammad Galuh Elfiky \n\n197\nRenata Puspanegara Ninagan
-    \n\r\n095\nJaneeta Maisha Amanah Hidayat\n\r\n186\nRafael Erren Eliezer\n\r\n238\nJosh
+  m_text: "\n098\nJinda Aqila Zain\n\n\n085\nGavin Malik Setiawan\n\n149\nMuhammad
+    Gibran Al Ghifari \n\r\n147\nMuhammad Galuh Elfiky \n\n\n\n197\nRenata Puspanegara
+    Ninagan \n\r\n095\nJaneeta Maisha Amanah Hidayat\n\r\n186\nRafael Erren Eliezer\n\r\n238\nJosh
     Reinhart Zidik\n\r\n144\nMuhammad Fathu Al Mubaraq \n\r\n030\nArya Danurwenda
     Prawira\n\r\n333\nGavriel Anantha Nathanael\n\r\n109\nKeira Zulaikha Mubarok\n\n170\nNararya
     Qolbu Cetta \n\r\n239\nNadia Aulia Syafarani"
