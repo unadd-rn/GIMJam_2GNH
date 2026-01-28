@@ -5374,6 +5374,7 @@ GameObject:
   - component: {fileID: 1680840140}
   - component: {fileID: 1680840139}
   - component: {fileID: 1680840141}
+  - component: {fileID: 1680840142}
   m_Layer: 0
   m_Name: UFO
   m_TagString: FinalBoss
@@ -5504,6 +5505,7 @@ PolygonCollider2D:
       - {x: -0.25, y: -3.90625}
       - {x: 0.25, y: -3.90625}
       - {x: 0.34375, y: 1.34375}
+      - {x: 0.39327693, y: 2.7510204}
       - {x: 0.90625, y: 2.96875}
       - {x: 1.15625, y: 3.15625}
   m_UseDelaunayMesh: 0
@@ -5581,6 +5583,27 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0, y: -1, z: 0}
+--- !u!95 &1680840142
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680840136}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 51c0bfa6bb531bb4d8a645b814d53263, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!19719996 &1689367841 stripped
 TilemapCollider2D:
   m_CorrespondingSourceObject: {fileID: 8253060032091342509, guid: 60d89c2fa34e4704da840eb3c9ba5a94, type: 3}
