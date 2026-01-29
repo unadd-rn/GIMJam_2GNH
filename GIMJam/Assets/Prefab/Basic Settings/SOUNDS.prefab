@@ -248,6 +248,9 @@ MonoBehaviour:
   - groupID: Collect Coin
     clips:
     - {fileID: 8300000, guid: 6d95e8498f9a4ef4b9274d1b8a61f5ce, type: 3}
+  - groupID: Dialogue Typing
+    clips:
+    - {fileID: 8300000, guid: 0a8dc7387da78274389ed2e07a0eb3ad, type: 3}
 --- !u!114 &5909262493677794101
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -343,42 +343,44 @@ public class DialogueManager : MonoBehaviour
             {
                 audioSource.Stop();
             }
-            AudioClip soundClip = null;
-            // create predictable audio from hashing
-            if (makePredictable)
-            {
-                int hashCode = currentCharacter.GetHashCode();
-                // sound clip
-                int predictableIndex = hashCode % dialogueTypingSoundClips.Length;
-                soundClip = dialogueTypingSoundClips[predictableIndex];
-                // pitch
-                int minPitchInt = (int) (minPitch * 100);
-                int maxPitchInt = (int) (maxPitch * 100);
-                int pitchRangeInt = maxPitchInt - minPitchInt;
-                // cannot divide by 0, so if there is no range then skip the selection
-                if (pitchRangeInt != 0)
-                {
-                    int predictablePitchInt = (hashCode % pitchRangeInt) + minPitchInt;
-                    float predictablePitch = predictablePitchInt / 100f;
-                    audioSource.pitch = predictablePitch;
-                }
-                else
-                {
-                    audioSource.pitch = minPitch;
-                }
-            }
-            // otherwise, randomize the audio
-            else
-            {
-                // sound clip
-                int randomIndex = Random.Range(0, dialogueTypingSoundClips.Length);
-                soundClip = dialogueTypingSoundClips[randomIndex];
-                // pitch
-                audioSource.pitch = Random.Range(minPitch, maxPitch);
-            }
+            // AudioClip soundClip = null;
+            // // create predictable audio from hashing
+            // if (makePredictable)
+            // {
+            //     int hashCode = currentCharacter.GetHashCode();
+            //     // sound clip
+            //     int predictableIndex = hashCode % dialogueTypingSoundClips.Length;
+            //     soundClip = dialogueTypingSoundClips[predictableIndex];
+            //     // pitch
+            //     int minPitchInt = (int) (minPitch * 100);
+            //     int maxPitchInt = (int) (maxPitch * 100);
+            //     int pitchRangeInt = maxPitchInt - minPitchInt;
+            //     // cannot divide by 0, so if there is no range then skip the selection
+            //     if (pitchRangeInt != 0)
+            //     {
+            //         int predictablePitchInt = (hashCode % pitchRangeInt) + minPitchInt;
+            //         float predictablePitch = predictablePitchInt / 100f;
+            //         audioSource.pitch = predictablePitch;
+            //     }
+            //     else
+            //     {
+            //         audioSource.pitch = minPitch;
+            //     }
+            // }
+            // // otherwise, randomize the audio
+            // else
+            // {
+            //     // sound clip
+            //     int randomIndex = Random.Range(0, dialogueTypingSoundClips.Length);
+            //     soundClip = dialogueTypingSoundClips[randomIndex];
+            //     // pitch
+            //     audioSource.pitch = Random.Range(minPitch, maxPitch);
+            // }
            
             // play sound
-            audioSource.PlayOneShot(soundClip);
+            // audioSource.PlayOneShot(soundClip);
+
+            SoundManager.Instance.PlaySound2D("Dialogue Typing");
         }
     }
 
