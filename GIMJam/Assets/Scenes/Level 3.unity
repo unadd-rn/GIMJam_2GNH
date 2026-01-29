@@ -749,6 +749,10 @@ PrefabInstance:
       propertyPath: bullet
       value: 
       objectReference: {fileID: 5749402082823666609, guid: c1b5bab4991d1664fb13bf46df9338cd, type: 3}
+    - target: {fileID: 8645033882054509811, guid: e2e19eb62f9682b4cb61268fe971c2ef, type: 3}
+      propertyPath: shootEvery
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

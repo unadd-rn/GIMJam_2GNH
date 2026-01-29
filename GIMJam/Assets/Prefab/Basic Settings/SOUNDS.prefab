@@ -259,6 +259,12 @@ MonoBehaviour:
   - groupID: alien_audio
     clips:
     - {fileID: 8300000, guid: 8d861f19d85aadf40b6db821f850eff5, type: 3}
+  - groupID: Enemy Shoot
+    clips:
+    - {fileID: 8300000, guid: b8be6edbc1aebc240a34fc235a47d628, type: 3}
+  - groupID: ufo kidnap
+    clips:
+    - {fileID: 8300000, guid: 0a4be4974248af944bdcc9a6d4e9d910, type: 3}
 --- !u!114 &5909262493677794101
 MonoBehaviour:
   m_ObjectHideFlags: 0

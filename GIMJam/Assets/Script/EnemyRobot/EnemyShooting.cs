@@ -42,6 +42,7 @@ public class EnemyShooting : MonoBehaviour, IPausable
     void Shoot()
     {
         if (_paused) return; 
+        SoundManager.Instance.PlaySound2D("Enemy Shoot");
         Instantiate(bullet, bulletPos.position, Quaternion.identity);
     }
 

@@ -104,7 +104,6 @@ public class UFOController : MonoBehaviour, IPausable
 
     private void PerformAbduction()
     {
-        SoundManager.Instance.PlaySound2D("Hit UFO");
         Vector3 targetPos = transform.position;
         _playerTransform.position = Vector3.MoveTowards(_playerTransform.position, targetPos, liftSpeed * Time.deltaTime);
 
@@ -124,30 +123,34 @@ public class UFOController : MonoBehaviour, IPausable
     {
         if (other.CompareTag(playerTag))
         {
-            _isAbducting = true;
-            MusicManager.Instance.StopMusic();
-
-            CinemachineImpulseManager.Instance.Clear();
-
-            _playerRb = other.GetComponent<Rigidbody2D>();
-            _playerScript = other.GetComponent<RobotController.RobotController>();
-
-            if (_playerScript != null) _playerScript.enabled = false;
-            
-            if (_playerRb != null)
+            if (_isAbducting == false)
             {
-                _playerRb.velocity = Vector2.zero;
-                _playerRb.isKinematic = true; 
-            }
+                _isAbducting = true;
+                MusicManager.Instance.StopMusic();
 
-            if (impulseSource != null) 
-            {
-                impulseSource.GenerateImpulse(); 
-            }
+                SoundManager.Instance.PlaySound2D("ufo kidnap");
+                CinemachineImpulseManager.Instance.Clear();
 
-            if (other.TryGetComponent(out AbductionVisual visuals))
-            {
-                visuals.PlayAbductionSequence();
+                _playerRb = other.GetComponent<Rigidbody2D>();
+                _playerScript = other.GetComponent<RobotController.RobotController>();
+
+                if (_playerScript != null) _playerScript.enabled = false;
+                
+                if (_playerRb != null)
+                {
+                    _playerRb.velocity = Vector2.zero;
+                    _playerRb.isKinematic = true; 
+                }
+
+                if (impulseSource != null) 
+                {
+                    impulseSource.GenerateImpulse(); 
+                }
+
+                if (other.TryGetComponent(out AbductionVisual visuals))
+                {
+                    visuals.PlayAbductionSequence();
+                }
             }
         }
     }

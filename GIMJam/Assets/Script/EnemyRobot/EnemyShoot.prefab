@@ -304,7 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 126167401268997267, guid: ee613bb2b502ee54393ee502085ef59c, type: 3}
   bulletPos: {fileID: 2902968728659199883}
-  shootEvery: 5
+  shootEvery: 2.5
   floatAmplitude: 0.1
   floatFrequency: 1.5
 --- !u!95 &5674415197707300297

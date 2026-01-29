@@ -21,7 +21,7 @@ namespace RobotController
         [Header("Audio Clips")]
         [SerializeField] private string _footstepSfxName = "Footstep Robot";
         [Header("Footstep Timer Settings")]
-        [SerializeField] private float _stepInterval = 0.4f; // Time between steps
+        [SerializeField] private float _stepInterval = 0.25f; // Time between steps
         private float _stepTimer;
 
         private AudioSource _source;

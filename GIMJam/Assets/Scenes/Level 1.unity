@@ -2758,10 +2758,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8645033882054509811, guid: e2e19eb62f9682b4cb61268fe971c2ef, type: 3}
-      propertyPath: shootEvery
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 9158221125482850317, guid: e2e19eb62f9682b4cb61268fe971c2ef, type: 3}
       propertyPath: m_LocalPosition.z
       value: 10
