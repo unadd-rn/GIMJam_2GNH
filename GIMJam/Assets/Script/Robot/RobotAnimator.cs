@@ -19,7 +19,10 @@ namespace RobotController
         [SerializeField] private ParticleSystem _landParticles;
 
         [Header("Audio Clips")]
-        [SerializeField] private AudioClip[] _footsteps;
+        [SerializeField] private string _footstepSfxName = "Footstep Robot";
+        [Header("Footstep Timer Settings")]
+        [SerializeField] private float _stepInterval = 0.4f; // Time between steps
+        private float _stepTimer;
 
         private AudioSource _source;
         private IPlayerController _player;
@@ -74,18 +77,42 @@ namespace RobotController
 
         private void Update()
         {
-            if (_paused) return;
-            if (_player == null) return;
+            if (_paused || _player == null) return;
 
             _anim.transform.localScale = Vector3.Lerp(_anim.transform.localScale, Vector3.one, Time.deltaTime * 10f);
 
             HandleWalkingState();
+
+            // --- SCRIPT-BASED FOOTSTEP LOOP ---
+            bool isWalking = Mathf.Abs(_player.FrameInput.x) > 0.01f;
+            
+            if (isWalking && _grounded)
+            {
+                _stepTimer -= Time.deltaTime;
+                if (_stepTimer <= 0)
+                {
+                    PlayFootstep();
+                    _stepTimer = _stepInterval; // Reset the clock
+                }
+            }
+            else
+            {
+                _stepTimer = 0; // Reset timer when you stop so the first step always plays instantly
+            }
         }
 
         private void HandleWalkingState()
         {
             bool isWalking = Mathf.Abs(_player.FrameInput.x) > 0.01f;
             _anim.SetBool(WalkingKey, isWalking);
+        }
+
+        public void PlayFootstep()
+        {
+            if (!_grounded || _paused) return;
+
+            // Grabs a random clip from the "Footsteps" group in your SoundLibrary
+            SoundManager.Instance.PlaySound2D(_footstepSfxName);
         }
 
         private void OnJumped()
@@ -112,6 +139,7 @@ namespace RobotController
             {
                 DetectGroundColor();
                 // _source.PlayOneShot(_footsteps[UnityEngine.Random.Range(0, _footsteps.Length)]);
+                SoundManager.Instance.PlaySound2D(_footstepSfxName);
                 _moveParticles.Play();
                 _landParticles.Play();
             }
