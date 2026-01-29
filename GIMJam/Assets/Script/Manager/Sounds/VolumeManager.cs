@@ -43,6 +43,9 @@ public class VolumeManager : MonoBehaviour
         PlayerPrefs.SetFloat("MasterVolume", masterSlider.value);
         PlayerPrefs.SetFloat("MusicVolume", musicSlider.value);
         PlayerPrefs.SetFloat("SFXVolume", sfxSlider.value);
+        PlayerPrefs.Save();
+
+        LoadVolume();
     }
 
     public void ButtonMenuClickSound()
