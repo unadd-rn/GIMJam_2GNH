@@ -52,6 +52,8 @@ public class Buttons : MonoBehaviour
 
         Time.timeScale = 1f;
         GameObject.Find("Scene Transition").GetComponent<Animator>().SetTrigger("End");
+        
+        SoundManager.Instance.PlaySound2D("Button Menu");
 
         StartCoroutine(LoadAfterDelay("MainMenu", 1.5f));
     }
@@ -61,6 +63,9 @@ public class Buttons : MonoBehaviour
         string currentScene = SceneManager.GetActiveScene().name;
         Time.timeScale = 1f;
         GameObject.Find("Scene Transition").GetComponent<Animator>().SetTrigger("End");
+
+        SoundManager.Instance.PlaySound2D("Button Menu");
+
         StartCoroutine(LoadAfterDelay(currentScene, 1.5f));
 
     }

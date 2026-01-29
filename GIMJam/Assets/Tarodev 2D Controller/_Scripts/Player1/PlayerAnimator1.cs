@@ -23,8 +23,8 @@ namespace TarodevController1
         [SerializeField] private ParticleSystem _moveParticles;
         [SerializeField] private ParticleSystem _landParticles;
 
-        [Header("Audio Clips")] [SerializeField]
-        private AudioClip[] _footsteps;
+        [Header("Audio Clips")]
+        [SerializeField] private string _footstepSfxName = "Footstep Player";
 
         private AudioSource _source;
         private IPlayerController _player;
@@ -110,7 +110,10 @@ namespace TarodevController1
                 SetColor(_landParticles);
 
                 _anim.SetTrigger(GroundedKey);
-                _source.PlayOneShot(_footsteps[Random.Range(0, _footsteps.Length)]);
+
+                SoundManager.Instance.PlaySound2D(_footstepSfxName);
+
+
                 _moveParticles.Play();
 
                 _landParticles.transform.localScale = Vector3.one * Mathf.InverseLerp(0, 40, impact);
