@@ -10,6 +10,8 @@ namespace RobotController
         [SerializeField] private ScriptableStatsRobot _stats;
         [SerializeField] private Transform _visuals;
 
+        [SerializeField] private float offsetGroundCheck = 0.5f;
+
         private Rigidbody2D _rb;
         private CapsuleCollider2D _col;
         private FrameInput _frameInput;
@@ -23,9 +25,9 @@ namespace RobotController
         private Rigidbody2D _activePlatformRb;
 
         // Double jump
-        private int _maxJumps = 0;
-        private int _jumpsRemaining;
-        private bool _isJumping;
+        [SerializeField] private int _maxJumps = 0;
+        [SerializeField]private int _jumpsRemaining;
+        // [SerializeField]private bool _isJumping;
 
         // Wall thingy
         private bool _onWall;
@@ -102,7 +104,12 @@ namespace RobotController
             Physics2D.queriesStartInColliders = false;
 
             // Ground Detection
-            RaycastHit2D groundHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, _stats.GroundLayer);
+            RaycastHit2D groundHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down , _stats.GrounderDistance, _stats.GroundLayer);
+
+            // DrawRaycasts for debugging
+            Debug.DrawRay(new Vector2(_col.bounds.center.x - (_col.size.x / 2) + offsetGroundCheck, _col.bounds.center.y), Vector2.down * (_col.size.y / 2 + _stats.GrounderDistance), Color.red);
+            Debug.DrawRay(new Vector2(_col.bounds.center.x + (_col.size.x / 2) - offsetGroundCheck, _col.bounds.center.y), Vector2.down * (_col.size.y / 2 + _stats.GrounderDistance), Color.red);
+
 
             bool isMovingPlatform = groundHit.collider != null && groundHit.collider.gameObject.layer == LayerMask.NameToLayer("MovingPlatform");
 
@@ -180,7 +187,7 @@ namespace RobotController
                 ExternalJumpDown = false;
                 ExternalJumpHeld = false;
                 ExternalAttackDown = false;
-                _isJumping = false;
+                // _isJumping = false;
                 _jumpToConsume = false;
             }
         }
@@ -240,31 +247,43 @@ namespace RobotController
 
         private void ExecuteJump()
         {
-            if (_isJumping) return;
+            // if (_isJumping) return;
             
-            _isJumping = true;
-            _endedJumpEarly = false;
-            _timeJumpWasPressed = 0;
-            _bufferedJumpUsable = false;
-            _coyoteUsable = false;
+            // _isJumping = true;
+            // _endedJumpEarly = false;
+            // _timeJumpWasPressed = 0;
+            // _bufferedJumpUsable = false;
+            // _coyoteUsable = false;
+
+            // SoundManager.Instance.PlaySound2D("Jump Robot"); 
+
+            // Jumped?.Invoke(); 
+
+            // StartCoroutine(JumpForceDelay());
+
+            _endedJumpEarly = false;
+            _timeJumpWasPressed = 0;
+            _bufferedJumpUsable = false;
+            _coyoteUsable = false;
 
             SoundManager.Instance.PlaySound2D("Jump Robot"); 
 
-            Jumped?.Invoke(); 
-
-            StartCoroutine(JumpForceDelay());
+            float currentJumpPower = _isStickyGround ? _stats.JumpPower * 0.5f : _stats.JumpPower;
+            
+            _frameVelocity.y = currentJumpPower;
+            Jumped?.Invoke();
         }
 
-        private System.Collections.IEnumerator JumpForceDelay()
-        {
-            yield return new WaitForSeconds(0.16f); 
+        // private System.Collections.IEnumerator JumpForceDelay()
+        // {
+        //     yield return new WaitForSeconds(0.16f); 
             
-            float currentJumpPower = _isStickyGround ? _stats.JumpPower * 0.5f : _stats.JumpPower;
-            _frameVelocity.y = currentJumpPower;
-            _grounded = false;
+        //     float currentJumpPower = _isStickyGround ? _stats.JumpPower * 0.5f : _stats.JumpPower;
+        //     _frameVelocity.y = currentJumpPower;
+        //     _grounded = false;
             
-            _isJumping = false;
-        }
+        //     _isJumping = false;
+        // }
 
         #endregion
 

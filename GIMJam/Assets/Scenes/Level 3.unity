@@ -1178,7 +1178,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.092, y: -0.097, z: -10}
-  m_LocalScale: {x: 1.063455, y: 0.24481595, z: 1}
+  m_LocalScale: {x: 0.31116694, y: 0.24481595, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1761111359}
@@ -6279,9 +6279,10 @@ PolygonCollider2D:
     - - {x: 1.2363548, y: 5.3424463}
       - {x: 0.6625519, y: 5.3488073}
       - {x: 0.65753937, y: -0.19215441}
-      - {x: -0.4988823, y: -0.23604941}
-      - {x: -0.7312088, y: -0.43213904}
-      - {x: -0.9057617, y: -0.516396}
+      - {x: 0.6631241, y: -0.24811244}
+      - {x: 0.39873123, y: -0.260427}
+      - {x: -0.27679062, y: -0.25319326}
+      - {x: -1.0433922, y: -0.5016643}
       - {x: 0.75, y: -0.5}
       - {x: 1.0796509, y: -0.51411784}
   m_UseDelaunayMesh: 0
@@ -8765,6 +8766,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: {fileID: 11400000, guid: a649193263851f44396283bece4d3c9c, type: 2}
   _visuals: {fileID: 6968775100317925891}
+  offsetGroundCheck: 0.5
+  _maxJumps: 0
+  _jumpsRemaining: 0
   ExternalMoveX: 0
   ExternalJumpDown: 0
   ExternalJumpHeld: 0
