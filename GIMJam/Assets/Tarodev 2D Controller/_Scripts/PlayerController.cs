@@ -280,6 +280,8 @@ namespace TarodevController
             _bufferedJumpUsable = false;
             _coyoteUsable = false;
 
+            SoundManager.Instance.PlaySound2D("Jump Enji");
+
             float currentJumpPower = _isStickyGround ? _stats.JumpPower * 0.5f : _stats.JumpPower;
             
             _frameVelocity.y = currentJumpPower;

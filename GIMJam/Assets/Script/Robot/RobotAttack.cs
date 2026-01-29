@@ -66,6 +66,7 @@ namespace RobotController
             _anim.SetLayerWeight(layer, 1f);
             
             _anim.SetTrigger("Attack");
+            SoundManager.Instance.PlaySound2D("Shoot Robot");
 
             yield return new WaitForSeconds(0.6f);
 

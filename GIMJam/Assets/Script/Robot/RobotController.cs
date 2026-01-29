@@ -246,6 +246,8 @@ namespace RobotController
             _bufferedJumpUsable = false;
             _coyoteUsable = false;
 
+            SoundManager.Instance.PlaySound2D("Jump Robot"); 
+
             Jumped?.Invoke(); 
 
             StartCoroutine(JumpForceDelay());

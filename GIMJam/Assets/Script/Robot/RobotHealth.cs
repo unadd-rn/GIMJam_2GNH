@@ -41,6 +41,8 @@ public class RobotHealth : MonoBehaviour
 
         OnRobotHit?.Invoke();
 
+        SoundManager.Instance.PlaySound2D("Hit Robot");
+
         if(HitStopManager.Instance != null) HitStopManager.Instance.Stop(0.15f, 5f);
 
         RobotController.RobotController controller = GetComponent<RobotController.RobotController>();
