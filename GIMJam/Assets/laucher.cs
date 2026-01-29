@@ -23,6 +23,7 @@ public class laucher : MonoBehaviour
             {
                 // Panggil OnLaunch hanya sekali
                 FinalLevelManager.instance.OnLaunch(true);
+                MusicManager.Instance.StopMusic();
                 
                 // Matikan isPlayerOnLauncher biar gak kepanggil berkali-kali tiap frame
                 isPlayerOnLauncher = false; 

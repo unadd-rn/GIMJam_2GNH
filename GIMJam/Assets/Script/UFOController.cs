@@ -41,7 +41,6 @@ public class UFOController : MonoBehaviour, IPausable
         }
         else
         {
-            MusicManager.Instance.StopMusic();
             PerformAbduction();
         }
 
@@ -126,6 +125,7 @@ public class UFOController : MonoBehaviour, IPausable
         if (other.CompareTag(playerTag))
         {
             _isAbducting = true;
+            MusicManager.Instance.StopMusic();
 
             CinemachineImpulseManager.Instance.Clear();
 
