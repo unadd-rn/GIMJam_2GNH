@@ -39,6 +39,15 @@ public class LevelManager : MonoBehaviour
         UpdateUI();
     }
 
+    void Start()
+    {
+        FinalLevelManager finalLevelManager = GetComponent<FinalLevelManager>();
+        if (finalLevelManager == null)
+        {
+            MusicManager.Instance.PlayMusic("Main BG");
+        }        
+    }
+
     public void AddCoin()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;

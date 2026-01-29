@@ -547,6 +547,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6968775100317925891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &281166490
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5653761730074525304, guid: cf28045168833e4499d4c0fbe12a6e32, type: 3}
+      propertyPath: m_Name
+      value: SOUNDS
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864005571373757976, guid: cf28045168833e4499d4c0fbe12a6e32, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 317.29346
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864005571373757976, guid: cf28045168833e4499d4c0fbe12a6e32, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 161.32751
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864005571373757976, guid: cf28045168833e4499d4c0fbe12a6e32, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.2633839
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864005571373757976, guid: cf28045168833e4499d4c0fbe12a6e32, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864005571373757976, guid: cf28045168833e4499d4c0fbe12a6e32, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864005571373757976, guid: cf28045168833e4499d4c0fbe12a6e32, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864005571373757976, guid: cf28045168833e4499d4c0fbe12a6e32, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864005571373757976, guid: cf28045168833e4499d4c0fbe12a6e32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864005571373757976, guid: cf28045168833e4499d4c0fbe12a6e32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864005571373757976, guid: cf28045168833e4499d4c0fbe12a6e32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cf28045168833e4499d4c0fbe12a6e32, type: 3}
 --- !u!1 &289645929
 GameObject:
   m_ObjectHideFlags: 0
@@ -1743,10 +1800,7 @@ MonoBehaviour:
   _launchParticles: {fileID: 1356612932}
   _moveParticles: {fileID: 752422504}
   _landParticles: {fileID: 859105897}
-  _footsteps:
-  - {fileID: 8300000, guid: 5d94063f45167b04ab62585e436da58c, type: 3}
-  - {fileID: 8300000, guid: b5803c17557c59c40bf3a6d69cb46cb3, type: 3}
-  - {fileID: 8300000, guid: 1876767bf7cbf284394dc3817af9593c, type: 3}
+  _footstepSfxName: Footstep Player
 --- !u!114 &606263773 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6831151096464075271, guid: 7173705a973761543a5e60291b7990fe, type: 3}
@@ -7628,9 +7682,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1238274901413666205, guid: c7fee19a59eedb140b1c7bc23f6f94c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4141075531644724999, guid: c7fee19a59eedb140b1c7bc23f6f94c7, type: 3}
       propertyPath: m_Name
       value: post process
+      objectReference: {fileID: 0}
+    - target: {fileID: 4429232676214057819, guid: c7fee19a59eedb140b1c7bc23f6f94c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303585451355113492, guid: c7fee19a59eedb140b1c7bc23f6f94c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9195451319386319031, guid: c7fee19a59eedb140b1c7bc23f6f94c7, type: 3}
       propertyPath: m_Pivot.x
@@ -43401,3 +43467,4 @@ SceneRoots:
   - {fileID: 3283253168297649143}
   - {fileID: 3877354441434371840}
   - {fileID: 4080109404518674298}
+  - {fileID: 281166490}

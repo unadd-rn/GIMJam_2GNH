@@ -179,9 +179,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tracks:
   - trackName: Main BG
-    clip: {fileID: 8300000, guid: bda89838d0a106e4e9f4cb46e8b9e8b2, type: 3}
+    clip: {fileID: 8300000, guid: a375a705f75a5504e9001fcfff1da81f, type: 3}
   - trackName: Chase BG
     clip: {fileID: 8300000, guid: a74c970c5eadf6c4e841d20c7dcb75c0, type: 3}
+  - trackName: Credit BG
+    clip: {fileID: 8300000, guid: d83ab83d11161044081bf5a0ebf9a1f4, type: 3}
 --- !u!114 &7949367297226393680
 MonoBehaviour:
   m_ObjectHideFlags: 0
