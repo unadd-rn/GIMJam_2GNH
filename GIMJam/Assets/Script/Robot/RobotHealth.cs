@@ -95,6 +95,7 @@ public class RobotHealth : MonoBehaviour
 
     private void Die()
     {
+        MusicManager.Instance.StopMusic();
          bar1.SetActive(false);
         bar2.SetActive(false);
         bar3.SetActive(false);

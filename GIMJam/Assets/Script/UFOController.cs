@@ -41,6 +41,7 @@ public class UFOController : MonoBehaviour, IPausable
         }
         else
         {
+            MusicManager.Instance.StopMusic();
             PerformAbduction();
         }
 
