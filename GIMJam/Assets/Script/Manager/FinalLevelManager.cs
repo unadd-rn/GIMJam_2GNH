@@ -34,6 +34,11 @@ public class FinalLevelManager : MonoBehaviour
         
     }
 
+    void Start()
+    {
+        MusicManager.Instance.PlayMusic("Chase BG");
+    }
+
     public void OnLaunch(bool launch)
     {
         if (!launch) 
