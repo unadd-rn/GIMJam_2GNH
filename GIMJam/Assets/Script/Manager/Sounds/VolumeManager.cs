@@ -45,6 +45,11 @@ public class VolumeManager : MonoBehaviour
         PlayerPrefs.SetFloat("SFXVolume", sfxSlider.value);
     }
 
+    public void ButtonMenuClickSound()
+    {
+        SoundManager.Instance.PlaySound2D("Button Menu");
+    }
+
     public void explosion()
     {
         SoundManager.Instance.PlaySound2D("explosion");
