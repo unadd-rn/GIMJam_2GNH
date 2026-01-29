@@ -104,6 +104,7 @@ public class UFOController : MonoBehaviour, IPausable
 
     private void PerformAbduction()
     {
+        SoundManager.Instance.PlaySound2D("Hit UFO");
         Vector3 targetPos = transform.position;
         _playerTransform.position = Vector3.MoveTowards(_playerTransform.position, targetPos, liftSpeed * Time.deltaTime);
 

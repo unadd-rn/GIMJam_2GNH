@@ -29,6 +29,7 @@ public class SpaceCoin : MonoBehaviour
         if (other.CompareTag("Player") && !isCollected)
         {
             isCollected = true;
+            SoundManager.Instance.PlaySound2D("Collect Coin");
             StartCoroutine(CollectSequence());
         }
     }
