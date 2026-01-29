@@ -66,6 +66,7 @@ public class ControlPlate : MonoBehaviour, IPausable
         if (collision.CompareTag("Control"))
         {
             _overlapCount++;
+            SoundManager.Instance.PlaySound2D("Button Robot");
             UpdatePlateState(true);
         }
     }

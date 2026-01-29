@@ -13,6 +13,7 @@ public class EnemyHealth : MonoBehaviour
 
         // Trigger the flash effect
         HitFlash flasher = GetComponent<HitFlash>();
+        SoundManager.Instance.PlaySound2D("Hit UFO");
         if (flasher != null) flasher.Flash();
         UpdateUI();
         if (health <= 0)

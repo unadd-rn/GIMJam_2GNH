@@ -1,1 +1,24 @@
-﻿{"inkVersion":20,"root":[["^Niya, the robot can fly again! ",{"#":"speaker:ENJI"},{"#":"portrait:enji_neutral"},{"#":"layout:left"},{"#":"audio:enji_audio"},"\n","^At last, no more driving like a bitch again. ",{"#":"speaker:NIYA"},{"#":"portrait:niya_neutral"},{"#":"layout:left"},{"#":"audio:niya_audio"},"\n",["done",{"#f":5,"#n":"g-0"}],null],"done",{"#f":1}],"listDefs":{}}
+﻿{
+	"inkVersion": 20,
+	"root": [
+		[
+			"^Niya, the robot can fly again! ",
+			{ "#": "speaker:ENJI" },
+			{ "#": "portrait:enji_neutral" },
+			{ "#": "layout:left" },
+			{ "#": "audio:enji_audio" },
+			"\n",
+			"^At last, no more driving like a bitch again. ",
+			{ "#": "speaker:NIYA" },
+			{ "#": "portrait:niya_neutral" },
+			{ "#": "layout:left" },
+			{ "#": "audio:niya_audio" },
+			"\n",
+			["done", { "#f": 5, "#n": "g-0" }],
+			null
+		],
+		"done",
+		{ "#f": 1 }
+	],
+	"listDefs": {}
+}

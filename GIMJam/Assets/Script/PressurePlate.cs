@@ -58,6 +58,7 @@ public class PermanentPressurePlate : MonoBehaviour
     {
         if (!isActivated && collision.gameObject.CompareTag("Player"))
         {
+            SoundManager.Instance.PlaySound2D("Pressure Plate");
             StartCoroutine(CameraPanSequence());
         }
     }
@@ -79,6 +80,7 @@ public class PermanentPressurePlate : MonoBehaviour
         if (impulseSource != null) impulseSource.GenerateImpulse(shakeIntensity);
         
         shouldMoveDoor = true;
+        SoundManager.Instance.PlaySound2D("Door");
         yield return new WaitForSeconds(focusDuration);
 
         playerVCam.Follow = originalTarget;
