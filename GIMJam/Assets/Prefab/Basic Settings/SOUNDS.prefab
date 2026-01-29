@@ -248,13 +248,13 @@ MonoBehaviour:
   - groupID: Collect Coin
     clips:
     - {fileID: 8300000, guid: 6d95e8498f9a4ef4b9274d1b8a61f5ce, type: 3}
-  - groupID: Enji Voice
+  - groupID: enji_audio
     clips:
     - {fileID: 8300000, guid: 78a70a08b0db9b747b8df2ba62a00ff3, type: 3}
-  - groupID: Niya Voice
+  - groupID: niya_audio
     clips:
     - {fileID: 8300000, guid: 0a8dc7387da78274389ed2e07a0eb3ad, type: 3}
-  - groupID: Alien Voice
+  - groupID: alien_audio
     clips:
     - {fileID: 8300000, guid: 8d861f19d85aadf40b6db821f850eff5, type: 3}
 --- !u!114 &5909262493677794101

@@ -23,6 +23,7 @@
 			"^ZIP ZIP!!! ",
 			{ "#": "speaker: ???" },
             { "#": "portrait:empty"},
+			{ "#": "audio:alien_audio" },
 			"\n",
 			"^UFO?! ",
 			{ "#": "speaker: ENJI & NIYA" },

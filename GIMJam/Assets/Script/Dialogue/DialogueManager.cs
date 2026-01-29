@@ -31,13 +31,17 @@ public class DialogueManager : MonoBehaviour
 
 
     [Header("Audio")]
-    [SerializeField] private DialogueAudioInfoSO defaultAudioInfo;
-    [SerializeField] private DialogueAudioInfoSO[] audioInfos;
-    [SerializeField] private bool makePredictable;
-    private DialogueAudioInfoSO currentAudioInfo;
-    private Dictionary<string, DialogueAudioInfoSO> audioInfoDictionary;
-    private AudioSource audioSource;
+    [SerializeField] private int frequencyLevel = 3;
+    // [SerializeField] private DialogueAudioInfoSO defaultAudioInfo;
+    // [SerializeField] private DialogueAudioInfoSO[] audioInfos;
+    // [SerializeField] private bool makePredictable;
+    // private DialogueAudioInfoSO currentAudioInfo;
+    // private Dictionary<string, DialogueAudioInfoSO> audioInfoDictionary;
+    // private AudioSource audioSource;
 
+    // array of soundNames corresponding to audio info
+    private string currentSoundName;
+    
     [Header("Background/Image UI")]
 // The UI Image component on your Canvas where the picture will show up
     [SerializeField] private UnityEngine.UI.Image displayImage; 
@@ -89,8 +93,8 @@ public class DialogueManager : MonoBehaviour
         dialogueVariables = new DialogueVariables(loadGlobalsJSON);
 
 
-        audioSource = this.gameObject.AddComponent<AudioSource>();
-        currentAudioInfo = defaultAudioInfo;
+        // audioSource = this.gameObject.AddComponent<AudioSource>();
+        currentSoundName = "";
     }
 
 
@@ -121,33 +125,34 @@ public class DialogueManager : MonoBehaviour
         }
 
 
-        InitializeAudioInfoDictionary();
+        // InitializeAudioInfoDictionary();
     }
 
 
-    private void InitializeAudioInfoDictionary()
-    {
-        audioInfoDictionary = new Dictionary<string, DialogueAudioInfoSO>();
-        audioInfoDictionary.Add(defaultAudioInfo.id, defaultAudioInfo);
-        foreach (DialogueAudioInfoSO audioInfo in audioInfos)
-        {
-            audioInfoDictionary.Add(audioInfo.id, audioInfo);
-        }
-    }
+    // private void InitializeAudioInfoDictionary()
+    // {
+    //     audioInfoDictionary = new Dictionary<string, DialogueAudioInfoSO>();
+    //     audioInfoDictionary.Add(defaultAudioInfo.id, defaultAudioInfo);
+    //     foreach (DialogueAudioInfoSO audioInfo in audioInfos)
+    //     {
+    //         audioInfoDictionary.Add(audioInfo.id, audioInfo);
+    //     }
+    // }
 
 
     private void SetCurrentAudioInfo(string id)
     {
-        DialogueAudioInfoSO audioInfo = null;
-        audioInfoDictionary.TryGetValue(id, out audioInfo);
-        if (audioInfo != null)
-        {
-            this.currentAudioInfo = audioInfo;
-        }
-        else
-        {
-            Debug.LogWarning("Failed to find audio info for id: " + id);
-        }
+        currentSoundName = id;
+        // DialogueAudioInfoSO audioInfo = null;
+        // audioInfoDictionary.TryGetValue(id, out audioInfo);
+        // if (audioInfo != null)
+        // {
+        //     this.currentAudioInfo = audioInfo;
+        // }
+        // else
+        // {
+        //     Debug.LogWarning("Failed to find audio info for id: " + id);
+        // }
     }
 
 
@@ -216,7 +221,7 @@ public class DialogueManager : MonoBehaviour
 
 
         // go back to default audio
-        SetCurrentAudioInfo(defaultAudioInfo.id);
+        SetCurrentAudioInfo("default_audio");
 
         if (loadSceneOnExit && !string.IsNullOrEmpty(sceneToLoadAtEnd))
         {
@@ -329,20 +334,21 @@ public class DialogueManager : MonoBehaviour
     private void PlayDialogueSound(int currentDisplayedCharacterCount, char currentCharacter)
     {
         // set variables for the below based on our config
-        AudioClip[] dialogueTypingSoundClips = currentAudioInfo.dialogueTypingSoundClips;
-        int frequencyLevel = currentAudioInfo.frequencyLevel;
-        float minPitch = currentAudioInfo.minPitch;
-        float maxPitch = currentAudioInfo.maxPitch;
-        bool stopAudioSource = currentAudioInfo.stopAudioSource;
+        // AudioClip[] dialogueTypingSoundClips = currentAudioInfo.dialogueTypingSoundClips;
+        // int frequencyLevel = currentAudioInfo.frequencyLevel;
+        // float minPitch = currentAudioInfo.minPitch;
+        // float maxPitch = currentAudioInfo.maxPitch;
+        // bool stopAudioSource = currentAudioInfo.stopAudioSource;
 
 
         // play the sound based on the config
+        // if (currentDisplayedCharacterCount % frequencyLevel == 0)
         if (currentDisplayedCharacterCount % frequencyLevel == 0)
         {
-            if (stopAudioSource)
-            {
-                audioSource.Stop();
-            }
+            // if (stopAudioSource)
+            // {
+            //     audioSource.Stop();
+            // }
             // AudioClip soundClip = null;
             // // create predictable audio from hashing
             // if (makePredictable)
@@ -377,10 +383,19 @@ public class DialogueManager : MonoBehaviour
             //     audioSource.pitch = Random.Range(minPitch, maxPitch);
             // }
            
-            // play sound
-            // audioSource.PlayOneShot(soundClip);
+            SoundManager.Instance.PlaySound2D(currentSoundName);
 
-            SoundManager.Instance.PlaySound2D("Dialogue Typing");
+            // if (currentAudioInfo.name == "niya_audio")
+            // {
+            //     SoundManager.Instance.PlaySound2D("Voice Niya");
+            // }
+            // else if (currentAudioInfo.name == "enji_audio")
+            // {
+            //     SoundManager.Instance.PlaySound2D("Voice Enji");
+            // }
+            // else {
+            //     SoundManager.Instance.PlaySound2D("Voice Alien" );
+            // }
         }
     }
 

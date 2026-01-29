@@ -57,11 +57,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   makePredictable: 1
+  displayImage: {fileID: 0}
+  sceneSprites: []
+  sceneToLoadAtEnd: 
+  loadSceneOnExit: 0
 --- !u!1 &1638789132454326550
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inkJSON: {fileID: 4900000, guid: 36ecffd9695efc647b3b7c6c5194a996, type: 3}
+  triggerID: 
 --- !u!1 &6327379510430175075
 GameObject:
   m_ObjectHideFlags: 0
