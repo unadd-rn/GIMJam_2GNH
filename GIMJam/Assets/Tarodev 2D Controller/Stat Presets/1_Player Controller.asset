@@ -35,7 +35,7 @@ MonoBehaviour:
   JumpBuffer: 0.2
   ApexThreshold: 5
   ApexGravityModifier: 0.1
-  DashKey: 304
+  DashKey: 0
   DashSpeed: 30
   DashDuration: 0.15
   MaxDashes: 1

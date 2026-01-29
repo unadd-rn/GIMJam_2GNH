@@ -30,7 +30,7 @@ namespace TarodevController
         private Rigidbody2D _activePlatformRb;
 
         // Double jump
-        private int _maxJumps = 1;
+        private int _maxJumps = 0;
         private int _jumpsRemaining;
 
         // dashing
@@ -71,6 +71,9 @@ namespace TarodevController
             _col = GetComponent<BoxCollider2D>();
 
             _cachedQueryStartInColliders = Physics2D.queriesStartInColliders;
+
+            // ignore collision with layer Player
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Player"), true);
         }
 
         private void Update()

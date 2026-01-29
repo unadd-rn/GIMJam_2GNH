@@ -219,10 +219,10 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 259115ba653fdea43a27b56fcbe1aa9f, type: 3}
   - groupID: Footstep Player
     clips:
-    - {fileID: 8300000, guid: b7281b03a95f6474b9aabebbc96b71d4, type: 3}
+    - {fileID: 8300000, guid: 2b8747833da8f6546814638201df3c8a, type: 3}
   - groupID: Footstep Robot
     clips:
-    - {fileID: 8300000, guid: 0ecc212f0f598ad40aae6e81f46221eb, type: 3}
+    - {fileID: 8300000, guid: f6bff3fbd7023b74ea74c07eed643cde, type: 3}
   - groupID: Jump Enji
     clips:
     - {fileID: 8300000, guid: 965a2d883409bbf4b96f6f651900991d, type: 3}

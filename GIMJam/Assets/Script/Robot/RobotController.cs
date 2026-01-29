@@ -180,6 +180,8 @@ namespace RobotController
                 ExternalJumpDown = false;
                 ExternalJumpHeld = false;
                 ExternalAttackDown = false;
+                _isJumping = false;
+                _jumpToConsume = false;
             }
         }
 

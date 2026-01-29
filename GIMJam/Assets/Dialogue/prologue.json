@@ -19,7 +19,7 @@
 			{ "#": "speaker:ENJI" },
 			{ "#": "portrait:enji_panick" },
 			{ "#": "layout:left" },
-			{ "#": "audio:niya_audio" },
+			{ "#": "audio:enji_audio" },
 			{ "#": "image:cutscene_2" },
 			"\n",
 			["done", { "#f": 5, "#n": "g-0" }],

@@ -30,7 +30,7 @@ namespace TarodevController1
         private Rigidbody2D _activePlatformRb;
 
         // Double jump
-        private int _maxJumps = 1;
+        private int _maxJumps = 0;
         private int _jumpsRemaining;
 
         // dashing
@@ -279,6 +279,8 @@ namespace TarodevController1
             _timeJumpWasPressed = 0;
             _bufferedJumpUsable = false;
             _coyoteUsable = false;
+
+            SoundManager.Instance.PlaySound2D("Jump Enji");
 
             float currentJumpPower = _isStickyGround ? _stats.JumpPower * 0.5f : _stats.JumpPower;
             
