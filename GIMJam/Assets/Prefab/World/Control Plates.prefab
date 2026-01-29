@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6550243692432396808}
   - component: {fileID: 8962655044545241678}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Hanging (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3763667720644796119}
   - component: {fileID: 1687024969687356448}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Hanging (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7956918771953435707}
   - component: {fileID: 2816968416046463241}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Hanging
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5609672578138205314}
   - component: {fileID: 7881066217596894237}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Hanging (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 7315679389854067125}
   - component: {fileID: 4954377234823397353}
   - component: {fileID: 3252725355269188650}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -496,7 +496,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3380421719623180018}
   - component: {fileID: 5140011047362196976}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Hanging (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -580,7 +580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6295992460427437492}
   - component: {fileID: 2161214744046972310}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Hanging (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -666,7 +666,7 @@ GameObject:
   - component: {fileID: 3921898725672867554}
   - component: {fileID: 8153192303529380083}
   - component: {fileID: 31996644860167405}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Jump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -813,7 +813,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5070446845481896117}
   - component: {fileID: 7765418893096224137}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Hanging (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -934,7 +934,7 @@ GameObject:
   - component: {fileID: 2540087666542300967}
   - component: {fileID: 6127360293895509177}
   - component: {fileID: 196318851306775155}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1085,7 +1085,7 @@ GameObject:
   - component: {fileID: 4876928220313216625}
   - component: {fileID: 5911947464369399667}
   - component: {fileID: 5854171917027945839}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

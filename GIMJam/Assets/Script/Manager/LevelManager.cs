@@ -46,6 +46,10 @@ public class LevelManager : MonoBehaviour
         {
             MusicManager.Instance.PlayMusic("Main BG");
         }        
+
+        // IGNORE COLLISION
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Player"), true);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Ignore Raycast"), true);
     }
 
     public void AddCoin()

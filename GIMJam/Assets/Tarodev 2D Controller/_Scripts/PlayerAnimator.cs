@@ -26,6 +26,10 @@ namespace TarodevController
         [Header("Audio Clips")]
         [SerializeField] private string _footstepSfxName = "Footstep Player";
 
+        [Header("Footstep Timer Settings")]
+        [SerializeField] private float _stepInterval = 0.25f; // Time between steps
+        private float _stepTimer;
+
         private AudioSource _source;
         private IPlayerController _player;
         private bool _grounded;
@@ -61,7 +65,21 @@ namespace TarodevController
 
             HandleIdleSpeed();
 
-            HandleCharacterTilt();
+            bool isWalking = Mathf.Abs(_player.FrameInput.x) > 0.01f;
+
+            if (isWalking && _grounded)
+            {
+                _stepTimer -= Time.deltaTime;
+                if (_stepTimer <= 0)
+                {
+                    PlayFootstep();
+                    _stepTimer = _stepInterval; // Reset the clock
+                }
+            }
+            else
+            {
+                _stepTimer = 0; // Reset timer when you stop so the first step always plays instantly
+            }
         }
 
 
@@ -69,7 +87,7 @@ namespace TarodevController
         {
             var inputStrength = Mathf.Abs(_player.FrameInput.x);
             
-            _anim.SetBool(IsWalkingKey, inputStrength > 0.1f); 
+            _anim.SetBool(IsWalkingKey, inputStrength > 0.001f); 
 
             _anim.SetFloat(IdleSpeedKey, Mathf.Lerp(1, _maxIdleSpeed, inputStrength));
             
@@ -78,12 +96,6 @@ namespace TarodevController
                 Vector3.one * inputStrength, 
                 2 * Time.deltaTime
             );
-        }
-
-        private void HandleCharacterTilt()
-        {
-            var runningTilt = _grounded ? Quaternion.Euler(0, 0, _maxTilt * _player.FrameInput.x) : Quaternion.identity;
-            _anim.transform.up = Vector3.RotateTowards(_anim.transform.up, runningTilt * Vector2.up, _tiltSpeed * Time.deltaTime, 0f);
         }
 
         private void OnJumped()
@@ -110,7 +122,7 @@ namespace TarodevController
                 SetColor(_landParticles);
 
                 _anim.SetTrigger(GroundedKey);
-                SoundManager.Instance.PlaySound2D(_footstepSfxName);
+
                 _moveParticles.Play();
 
                 _landParticles.transform.localScale = Vector3.one * Mathf.InverseLerp(0, 40, impact);
@@ -136,6 +148,13 @@ namespace TarodevController
         {
             var main = ps.main;
             main.startColor = _currentGradient;
+        }
+
+        public void PlayFootstep()
+        {
+            if (!_grounded) return;
+
+            SoundManager.Instance.PlaySound2D(_footstepSfxName);
         }
 
         private static readonly int GroundedKey = Animator.StringToHash("Grounded");

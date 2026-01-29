@@ -102,7 +102,7 @@ namespace RobotController
             Physics2D.queriesStartInColliders = false;
 
             // Ground Detection
-            RaycastHit2D groundHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer);
+            RaycastHit2D groundHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, _stats.GroundLayer);
 
             bool isMovingPlatform = groundHit.collider != null && groundHit.collider.gameObject.layer == LayerMask.NameToLayer("MovingPlatform");
 
@@ -115,8 +115,8 @@ namespace RobotController
             _isJumpBoostGround = groundHit.collider != null && groundHit.collider.gameObject.layer == LayerMask.NameToLayer("JumpBoost");
 
             // Wall Detection 
-            RaycastHit2D leftWallHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.left, _stats.WallDetectorDistance, ~_stats.PlayerLayer);
-            RaycastHit2D rightWallHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.right, _stats.WallDetectorDistance, ~_stats.PlayerLayer);
+            RaycastHit2D leftWallHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.left, _stats.WallDetectorDistance, _stats.GroundLayer);
+            RaycastHit2D rightWallHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.right, _stats.WallDetectorDistance, _stats.GroundLayer);
 
             bool leftWall = leftWallHit.collider != null;
             bool rightWall = rightWallHit.collider != null;

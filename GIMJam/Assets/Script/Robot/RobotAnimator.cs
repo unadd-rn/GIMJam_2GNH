@@ -111,7 +111,6 @@ namespace RobotController
         {
             if (!_grounded || _paused) return;
 
-            // Grabs a random clip from the "Footsteps" group in your SoundLibrary
             SoundManager.Instance.PlaySound2D(_footstepSfxName);
         }
 

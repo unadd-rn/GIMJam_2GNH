@@ -72,8 +72,6 @@ namespace TarodevController
 
             _cachedQueryStartInColliders = Physics2D.queriesStartInColliders;
 
-            // ignore collision with layer Player
-            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Player"), true);
         }
 
         private void Update()
@@ -164,7 +162,7 @@ namespace TarodevController
             Vector2 boxSize = new Vector2(_col.size.x * 0.9f, 0.05f);
             
             float castDistance = _stats.GrounderDistance + 0.05f;
-            RaycastHit2D groundHit = Physics2D.BoxCast(_col.bounds.center, boxSize, 0, Vector2.down, (_col.size.y / 2) + _stats.GrounderDistance, ~_stats.PlayerLayer);
+            RaycastHit2D groundHit = Physics2D.BoxCast(_col.bounds.center, boxSize, 0, Vector2.down, (_col.size.y / 2) + _stats.GrounderDistance, _stats.GroundLayer);
 
             bool isMovingPlatform = groundHit.collider != null && groundHit.collider.gameObject.layer == LayerMask.NameToLayer("MovingPlatform");
             _activePlatformRb = isMovingPlatform ? groundHit.collider.GetComponent<Rigidbody2D>() : null;
@@ -172,8 +170,8 @@ namespace TarodevController
             _isJumpBoostGround = groundHit.collider != null && groundHit.collider.gameObject.layer == LayerMask.NameToLayer("JumpBoost");
 
             Vector2 wallBoxSize = new Vector2(0.05f, _col.size.y * 0.8f);
-            RaycastHit2D leftWallHit = Physics2D.BoxCast(_col.bounds.center, wallBoxSize, 0, Vector2.left, (_col.size.x / 2) + _stats.WallDetectorDistance, ~_stats.PlayerLayer);
-            RaycastHit2D rightWallHit = Physics2D.BoxCast(_col.bounds.center, wallBoxSize, 0, Vector2.right, (_col.size.x / 2) + _stats.WallDetectorDistance, ~_stats.PlayerLayer);
+            RaycastHit2D leftWallHit = Physics2D.BoxCast(_col.bounds.center, wallBoxSize, 0, Vector2.left, (_col.size.x / 2) + _stats.WallDetectorDistance, _stats.GroundLayer);
+            RaycastHit2D rightWallHit = Physics2D.BoxCast(_col.bounds.center, wallBoxSize, 0, Vector2.right, (_col.size.x / 2) + _stats.WallDetectorDistance, _stats.GroundLayer);
 
             bool leftWall = leftWallHit.collider != null;
             bool rightWall = rightWallHit.collider != null;
@@ -218,9 +216,8 @@ namespace TarodevController
         private bool _coyoteUsable;
         private float _timeJumpWasPressed;
 
-        private bool HasBufferedJump => _bufferedJumpUsable && _time < _timeJumpWasPressed + _stats.JumpBuffer;
-        private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGrounded + _stats.CoyoteTime;
-
+        private bool HasBufferedJump => _bufferedJumpUsable && _time < _timeJumpWasPressed + _stats.JumpBuffer;
+        private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGrounded + _stats.CoyoteTime;
         private void HandleJump()
         {
             if (_grounded && _isJumpBoostGround)

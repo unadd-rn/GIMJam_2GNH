@@ -491,7 +491,7 @@ GameObject:
   - component: {fileID: 325888378}
   - component: {fileID: 325888377}
   - component: {fileID: 325888376}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: robot insides
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3052,7 +3052,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 753784539}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Control
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6154,7 +6154,7 @@ GameObject:
   - component: {fileID: 1918667263}
   - component: {fileID: 1918667265}
   - component: {fileID: 1918667264}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6550,7 +6550,7 @@ GameObject:
   - component: {fileID: 2133703812}
   - component: {fileID: 2133703813}
   - component: {fileID: 2133703814}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
